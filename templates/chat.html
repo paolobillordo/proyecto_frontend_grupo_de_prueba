@@ -3,12 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/prueba.css">
     <title>Document</title>
 </head>
 <body>
+    <div class="grid-container">
+        <div class="grid-item1">            
+            <button id="buscar_server">Explorar servidores</button>
+            <button id="server">Crear servidor</button>
+        </div>
+
+        <div class="grid-item2">
+            <button id="canales">Crear canal</button>
+        </div>
+
+        <div class="grid-item3">
+            <div class="mensajes_canal"></div>
+            <textarea name="mensaje" id="mensaje" cols="30" rows="10"></textarea>
+            <button id="Enviar">Enviar mensaje</button>
+        </div>        
+    </div>
+
     <button id="logout">Logout</button>
     <div id="message"></div>
 
-    <script src="../script/chat.js"></script>
+    <script src="../scripts/chat.js"></script>
 </body>
 </html>
