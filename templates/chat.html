@@ -3,11 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/prueba.css">
     <title>Document</title>
 </head>
 <body>
-    <button id="logout">Logout</button>
-    <div id="message"></div>
+    <div class="grid-container">
+        <div class="grid-item1">
+            <div class="servers">
+                <img src="" alt="Icon">
+                <h2>Nombre del server</h2>
+            </div>            
+            <button id="buscar_server">Explorar servidores</button>
+            <button id="server">Crear servidor</button>
+            <div class="user_log">
+                <img src="" alt="Image user">
+                <h3>Nickname</h3>
+                <button id="logout">Logout</button>
+                <div id="message"></div>
+            </div>
+        </div>
+
+        <div class="grid-item2">
+            <h3>Canales</h3>
+            <button id="canales">Crear canal</button>
+        </div>
+
+        <div class="grid-item3">
+            <div class="msj_canal">
+                <p>Mensaje 1</p>
+                <p>Mensaje 2</p>
+                <p>Mensaje 3</p>
+                <p>Mensaje 4</p>
+            </div>
+            <div class="input">
+                <input type="text" class="input_msj">
+                <button id="Enviar">Enviar mensaje</button>
+            </div>
+        </div>        
+    </div>
+
 
     <script src="../scripts/chat.js"></script>
 </body>
