@@ -9,20 +9,19 @@ function get_servers() {
           method: "GET",
           credentials: "include",
      })
-          .then((response) => {
-               if (response.status === 200) {
-                    return response.json().then((data) => {
-                         for (let i = 0; i < data.length; i++) {
-                              content.servers += `<img src="${data[i].icono}" alt="Image servidor"> <br> <h2>${data[i].name_server}</h2> <br>`;
-                         }
-                    });
-               } else {
-                    return response.json().then((data) => {
-                         document.getElementById("message").innerHTML =
-                              data.message;
-                    });
-               }
-          })
+     .then(response => response.json())
+     .then(data => {
+          const contenedor = document.getElementById("contenedor");
+          const claseParaDivs = "mi-clase";
+          data.forEach(server => {
+               const divExterior = document.createElement("div");
+               divExterior.classList.add(server_class);
+               const divInterior = document.createElement("div");
+               divInterior.textContent = server;
+               divExterior.appendChild(divInterior);
+               contenedor.appendChild(divExterior);
+       });
+     })
           .catch((error) => {
                document.getElementById("message").innerHTML =
                     "Ocurrió un error.";
@@ -53,14 +52,3 @@ function logout() {
                     "Ocurrió un error.";
           });
 }
-
-const content = {};
-content.servers = '';
-
-document.addEventListener('DOMContentLoaded', () => {
-  let html = document.body.innerHTML;
-  Object.entries(content).forEach(([tag, data]) => {
-    html = html.replaceAll(`{${tag}}`, data);
-  });
-  document.body.innerHTML = html;
-});
