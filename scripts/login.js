@@ -1,6 +1,4 @@
-document
-     .getElementById("loginForm")
-     .addEventListener("submit", function (event) {
+document.getElementById("loginForm").addEventListener("submit", function (event) {
           event.preventDefault();
           login();
      });
@@ -49,7 +47,6 @@ window.addEventListener("click", (e) => {
      if (e.target === modal_register) {
           modal_register.style.display = "none";
      }
-
 })
 
 // registra nuevo usuario
@@ -83,11 +80,13 @@ function create() {
                     return response.json().then((data) => {
                          document.getElementById("message").innerHTML =
                               data.message;
+                              window.location.href = "login.html";
                     });
                }
           })
           .catch((error) => {
                document.getElementById("message").innerHTML =
                     "Ocurrió un error.";
+                    window.location.href = "login.html";
           });
 }
