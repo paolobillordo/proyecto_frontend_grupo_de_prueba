@@ -92,7 +92,8 @@ iconFiles.forEach(iconFile => {
 });
 
 create_server.addEventListener("click", () => {
-     create_ser()
+     create_ser();
+     //create_use_ser()
 })
 
 function create_ser() {
@@ -129,3 +130,37 @@ function create_ser() {
                     window.location.href = "chat.html";
           });
 }
+
+function create_use_ser() {     
+     const data = {
+          name_server: document.getElementById("name_server").value
+     };
+     fetch("http://127.0.0.1:5000/servers/use_ser", {
+          method: "POST",
+          headers: {
+               "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+          credentials: "include",
+     })
+          .then((response) => {
+               if (response.status === 201) {
+                    return response.json().then((data) => {
+                         window.location.href = "chat.html";
+                    });
+               } else {
+                    return response.json().then((data) => {
+                         document.getElementById("message").innerHTML =
+                              data.message;
+                              window.location.href = "chat.html";
+                    });
+               }
+          })
+          .catch((error) => {
+               document.getElementById("message").innerHTML =
+                    "Ocurrió un error.";
+                    window.location.href = "chat.html";
+          });
+}
+
+
