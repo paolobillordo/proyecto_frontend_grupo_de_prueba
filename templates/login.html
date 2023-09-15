@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/login.css">
     <title>Login</title>
 </head>
 
@@ -17,11 +18,31 @@
         <input type="password" id="password" name="password" required>
         <br>
         <button type="submit">Login</button>
+        <button type="button" id="register">Registrar</button>
     </form>
     <div id="message"></div>
-
-
+    <div id="modal_register">
+        <div id="modal_container">
+            <form id = "register_form">
+                <h1>Crear cuenta</h1>
+                <label>Correo electronico</label>
+                <input type="email" id ="email_r"required><br>
+                <label>Usuario</label>
+                <input type="text" id = "usuario"required><br>
+                <label>Nombre</label>
+                <input type="text" id="nombre"required><br>
+                <label>Apellido</label>
+                <input type="text" id= "apellido"required><br>
+                <label>Password</label>
+                <input type="password" id= "password_r"required><br>
+                <label>Fecha de Nacimiento</label>
+                <input type="date" id= "date"required><br>
+                <button id="create_user">Crear Usuario</button>
+            </form>
+        </div>
+    </div>
     <script src="../scripts/login.js"></script>
+    
 </body>
 
 </html>
