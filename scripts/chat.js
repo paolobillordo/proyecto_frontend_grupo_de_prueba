@@ -1,4 +1,5 @@
 document.getElementById("logout").addEventListener("click", logout);
+
 window.addEventListener("load", function () {
      get_servers();
 });
@@ -11,14 +12,18 @@ function get_servers() {
      })
      .then(response => response.json())
      .then(data => {
-          const contenedor = document.getElementById("contenedor");
-          const claseParaDivs = "mi-clase";
+          const contenedor = document.getElementById("servers");
+          const claseServers = "server";
           data.forEach(server => {
                const divExterior = document.createElement("div");
-               divExterior.classList.add(server_class);
-               const divInterior = document.createElement("div");
-               divInterior.textContent = server;
-               divExterior.appendChild(divInterior);
+               divExterior.classList.add(claseServers);
+               const imgInterior = document.createElement("img");
+               imgInterior.src = "../assets/icon_server/" + server.icono;
+               imgInterior.srcset = "../assets/icon_server/servers_119542.ico"
+               const h2Interior = document.createElement("h2");
+               h2Interior.textContent = server.name_server;
+               divExterior.appendChild(imgInterior);
+               divExterior.appendChild(h2Interior);
                contenedor.appendChild(divExterior);
        });
      })
