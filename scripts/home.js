@@ -119,20 +119,20 @@ function create_ser() {
           .then((response) => {
                if (response.status === 201) {
                     return response.json().then((data) => {
-                         //window.location.href = "chat.html";
+                         //window.location.href = "home.html";
                     });
                } else {
                     return response.json().then((data) => {
                          document.getElementById("message").innerHTML =
                               data.message;
-                              window.location.href = "chat.html";
+                              window.location.href = "home.html";
                     });
                }
           })
           .catch((error) => {
                document.getElementById("message").innerHTML =
                     "Ocurrió un error.";
-                    window.location.href = "chat.html";
+                    window.location.href = "home.html";
           });
 }
 
@@ -151,20 +151,20 @@ function create_use_ser() {
           .then((response) => {
                if (response.status === 201) {
                     return response.json().then((data) => {
-                         window.location.href = "chat.html";
+                         window.location.href = "home.html";
                     });
                } else {
                     return response.json().then((data) => {
                          document.getElementById("message").innerHTML =
                               data.message;
-                              window.location.href = "chat.html";
+                              window.location.href = "home.html";
                     });
                }
           })
           .catch((error) => {
                document.getElementById("message").innerHTML =
                     "Ocurrió un error.";
-                    window.location.href = "chat.html";
+                    window.location.href = "home.html";
           });
 }
 
