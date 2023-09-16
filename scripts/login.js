@@ -19,7 +19,7 @@ function login() {
           .then((response) => {
                if (response.status === 200) {
                     return response.json().then((data) => {
-                         window.location.href = "chat.html";
+                         window.location.href = "home.html";
                     });
                } else {
                     return response.json().then((data) => {

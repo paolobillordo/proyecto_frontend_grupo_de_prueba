@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/chat.css">
+    <link rel="stylesheet" href="../styles/home.css">
     <title>Document</title>
 </head>
 <body>
@@ -57,12 +57,20 @@
 
                 </div>
                 
-                <button id="create_server">Crear</button>
+                <button type="button" id="create_server">Crear</button>
             </form>
         </div>
     </div>
 
+    <div id="modal_ok" class="modal_ok">
+        <div class="modal_ok_container">
+            <p>Ha creado el servidor: </p>
+            <p id="modal_message"></p>
+            <button id="btn_ok" class="btn_ok">OK</button>
+        </div>
+    </div>
 
-    <script src="../scripts/chat.js"></script>
+
+    <script src="../scripts/home.js"></script>
 </body>
 </html>

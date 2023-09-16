@@ -19,7 +19,7 @@ function get_servers() {
                divExterior.classList.add(claseServers);
                const imgInterior = document.createElement("img");
                imgInterior.src = server.icono;
-               imgInterior.srcset = "../assets/icon_server/5.ico"
+               //imgInterior.srcset = "../assets/icon_server/5.ico"
                const h2Interior = document.createElement("h2");
                h2Interior.textContent = server.name_server;
                divExterior.appendChild(imgInterior);
@@ -67,11 +67,11 @@ crearServer.addEventListener("click", () => {
      modal_server.style.display = "block";
 })
 
-window.addEventListener("click", (e) => {
-     if (e.target === modal_server) {
-          modal_server.style.display = "none";
-     }
-})
+// window.addEventListener("click", (e) => {
+//      if (e.target === modal_server) {
+//           modal_server.style.display = "none";
+//      }
+// })
 
 
 const iconList = document.getElementById("icon-list");
@@ -91,9 +91,14 @@ iconFiles.forEach(iconFile => {
     iconList.appendChild(img);
 });
 
-create_server.addEventListener("click", () => {
+create_server.addEventListener("click", (e) => {
+     e.preventDefault();
      create_ser();
-     //create_use_ser()
+     modal_server.style.display = "none";
+     modal.style.display = "block";
+     const mensaje = inputValue.value;
+     modalMessage.textContent = mensaje;
+     
 })
 
 function create_ser() {
@@ -114,26 +119,26 @@ function create_ser() {
           .then((response) => {
                if (response.status === 201) {
                     return response.json().then((data) => {
-                         window.location.href = "chat.html";
+                         //window.location.href = "home.html";
                     });
                } else {
                     return response.json().then((data) => {
                          document.getElementById("message").innerHTML =
                               data.message;
-                              window.location.href = "chat.html";
+                              window.location.href = "home.html";
                     });
                }
           })
           .catch((error) => {
                document.getElementById("message").innerHTML =
                     "Ocurrió un error.";
-                    window.location.href = "chat.html";
+                    window.location.href = "home.html";
           });
 }
 
 function create_use_ser() {     
      const data = {
-          name_server: document.getElementById("name_server").value
+          name_server: modalMessage.textContent
      };
      fetch("http://127.0.0.1:5000/servers/use_ser", {
           method: "POST",
@@ -146,21 +151,33 @@ function create_use_ser() {
           .then((response) => {
                if (response.status === 201) {
                     return response.json().then((data) => {
-                         window.location.href = "chat.html";
+                         window.location.href = "home.html";
                     });
                } else {
                     return response.json().then((data) => {
                          document.getElementById("message").innerHTML =
                               data.message;
-                              window.location.href = "chat.html";
+                              window.location.href = "home.html";
                     });
                }
           })
           .catch((error) => {
                document.getElementById("message").innerHTML =
                     "Ocurrió un error.";
-                    window.location.href = "chat.html";
+                    window.location.href = "home.html";
           });
 }
+
+
+const modal = document.getElementById("modal_ok");
+const btnOpenModal = document.getElementById("create_server");
+const btnOK = document.getElementById("btn_ok");
+const modalMessage = document.getElementById("modal_message");
+const inputValue = document.getElementById("name_server");
+
+btnOK.addEventListener("click", () => {
+     create_use_ser();
+     modal.style.display = "none";
+ });
 
 
