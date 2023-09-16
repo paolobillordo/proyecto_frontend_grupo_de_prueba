@@ -12,7 +12,7 @@ function get_servers() {
      })
           .then((response) => response.json())
           .then((data) => {
-               const contenedor = document.getElementById("servers");
+               const contenedor = document.getElementById("servers");               
                const claseServers = "server";
                data.forEach((server) => {
                     const divExterior = document.createElement("div");
@@ -29,6 +29,12 @@ function get_servers() {
                     divExterior.appendChild(buttonImg);
                     buttonImg.appendChild(h2Interior);
                     contenedor.appendChild(divExterior);
+                    button_channel = document.getElementById(server.name_server);
+                    button_channel.addEventListener("click", () => {
+                         const contenedor_msjs = document.getElementById("msj_canal");
+                         contenedor_msjs.innerHTML = '';
+                         get_channels(server.name_server)
+                    })
                });
           })
           .catch((error) => {
@@ -193,28 +199,6 @@ btnOK.addEventListener("click", () => {
      modal.style.display = "none";
 });
 
-const btn_prueba = document.getElementById("buscar_server");
-btn_prueba.addEventListener("click", () => {
-     get_channels("My Server")
-})
-// const buttons = document.querySelectorAll("button_img");
-// buttons.forEach((button) => {
-//      alert("click");
-//      boton = document.getElementById(button.id);
-//      boton.addEventListener("click", () => {
-//           get_channels(button.id)
-//      })
-// }) 
-
-// const buttons = document.querySelectorAll("button_img");
-// buttons.forEach((button) => {
-//      button.addEventListener("click", () => {
-//           alert("click");          
-//           get_channels(button.id)
-//      });
-// });
-
-
 
 function get_channels(name_server) {
      const url = `http://127.0.0.1:5000/channels/${name_server}`;
@@ -227,13 +211,47 @@ function get_channels(name_server) {
           .then((data) => {
                const contenedor = document.getElementById("channels");
                const claseChannels = "channels";
+               contenedor.innerHTML = '';
                data.forEach((channel) => {
                     const divExterior = document.createElement("div");
                     divExterior.classList.add(claseChannels);
                     const h2Interior = document.createElement("h2");
+                    h2Interior.id = channel.name_channel;
                     h2Interior.textContent = channel.name_channel;                    
                     divExterior.appendChild(h2Interior);
                     contenedor.appendChild(divExterior);
+                    channel_msj = document.getElementById(channel.name_channel);
+                    channel_msj.addEventListener("click", () => {
+                         get_msjs(channel.id_channel)
+                    });
+               });
+          })
+          .catch((error) => {
+               document.getElementById("message").innerHTML =
+                    "Ocurrió un error.";
+          });
+}
+
+function get_msjs(id_channel) {
+     const url = `http://127.0.0.1:5000/messages/${id_channel}`;
+     
+     fetch(url, {
+          method: "GET",                    
+          credentials: "include",
+     })
+          .then((response) => response.json())
+          .then((data) => {
+               const contenedor = document.getElementById("msj_canal");
+               const claseMSJ = "messages";
+               contenedor.innerHTML = '';
+               data.forEach((message) => {
+                    const divExterior = document.createElement("div");
+                    divExterior.classList.add(claseMSJ);
+                    const pInterior = document.createElement("p");
+                    pInterior.id = `message${message.id_message}`;
+                    pInterior.textContent = message.message;                    
+                    divExterior.appendChild(pInterior);
+                    contenedor.appendChild(divExterior);                    
                });
           })
           .catch((error) => {
