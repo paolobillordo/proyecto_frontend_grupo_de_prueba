@@ -111,6 +111,5 @@ function get_session() {
                          window.location.href = "home.html";
                     });
                }
-          })
-          
+          })          
 }
