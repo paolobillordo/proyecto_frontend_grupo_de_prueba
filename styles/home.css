@@ -19,6 +19,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: blue;
+    height: 100vh;
 }
 
 #canales {
@@ -30,6 +31,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: green;
+    height: 100vh;
 }
 
 .msj_canal {
@@ -106,5 +108,12 @@ body {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+}
+.grid-item1 {
+    height: 70%;
+}
+
+#servers_container {
+    overflow-y: auto;
 }
 

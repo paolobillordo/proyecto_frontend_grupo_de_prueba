@@ -1,7 +1,9 @@
 document.getElementById("logout").addEventListener("click", logout);
 
 window.addEventListener("load", function () {
-     get_servers();
+     if (document.title === "Home") {
+          get_servers();
+     }
 });
 
 function get_servers() {
@@ -12,29 +14,33 @@ function get_servers() {
      })
           .then((response) => response.json())
           .then((data) => {
-               const contenedor = document.getElementById("servers");               
-               const claseServers = "server";
+               const contenedor = document.getElementById("servers");
+               const claseServers = "server";               
                data.forEach((server) => {
                     const divExterior = document.createElement("div");
                     divExterior.classList.add(claseServers);
                     const imgInterior = document.createElement("img");
                     imgInterior.src = server.icono;
                     const buttonImg = document.createElement("button");
-                    buttonImg.classList.add("button_img")
-                    buttonImg.type = "button"
-                    buttonImg.id = server.name_server                   
+                    buttonImg.classList.add("button_img");
+                    buttonImg.type = "button";
+                    buttonImg.id = server.name_server;
                     const h2Interior = document.createElement("h2");
                     h2Interior.textContent = server.name_server;
                     buttonImg.appendChild(imgInterior);
                     divExterior.appendChild(buttonImg);
                     buttonImg.appendChild(h2Interior);
                     contenedor.appendChild(divExterior);
-                    button_channel = document.getElementById(server.name_server);
+                    button_channel = document.getElementById(
+                         server.name_server
+                    );
                     button_channel.addEventListener("click", () => {
-                         const contenedor_msjs = document.getElementById("msj_canal");
-                         contenedor_msjs.innerHTML = '';
-                         get_channels(server.name_server)
-                    })
+                         const contenedor_msjs =
+                              document.getElementById("msj_canal");
+                         contenedor_msjs.innerHTML = "";
+                         get_channels(server.name_server);
+                         clearInterval(intervalID);
+                    });
                });
           })
           .catch((error) => {
@@ -199,30 +205,30 @@ btnOK.addEventListener("click", () => {
      modal.style.display = "none";
 });
 
-
 function get_channels(name_server) {
      const url = `http://127.0.0.1:5000/channels/${name_server}`;
-     
+
      fetch(url, {
-          method: "GET",                    
+          method: "GET",
           credentials: "include",
      })
           .then((response) => response.json())
           .then((data) => {
                const contenedor = document.getElementById("channels");
                const claseChannels = "channels";
-               contenedor.innerHTML = '';
+               contenedor.innerHTML = "";
                data.forEach((channel) => {
                     const divExterior = document.createElement("div");
                     divExterior.classList.add(claseChannels);
                     const h2Interior = document.createElement("h2");
                     h2Interior.id = channel.name_channel;
-                    h2Interior.textContent = channel.name_channel;                    
+                    h2Interior.textContent = channel.name_channel;
                     divExterior.appendChild(h2Interior);
                     contenedor.appendChild(divExterior);
                     channel_msj = document.getElementById(channel.name_channel);
                     channel_msj.addEventListener("click", () => {
-                         get_msjs(channel.id_channel)
+                         get_msjs_10s(channel.id_channel);
+                         channel_id = channel.id_channel;
                     });
                });
           })
@@ -232,30 +238,79 @@ function get_channels(name_server) {
           });
 }
 
+let intervalID;
+function get_msjs_10s(id_channel) {
+     clearInterval(intervalID);
+     get_msjs(id_channel);
+     intervalID = setInterval(function () {
+          get_msjs(id_channel);
+     }, 10000);
+}
+
+var channel_id;
+
 function get_msjs(id_channel) {
      const url = `http://127.0.0.1:5000/messages/${id_channel}`;
-     
+
      fetch(url, {
-          method: "GET",                    
+          method: "GET",
           credentials: "include",
      })
           .then((response) => response.json())
           .then((data) => {
                const contenedor = document.getElementById("msj_canal");
                const claseMSJ = "messages";
-               contenedor.innerHTML = '';
+               contenedor.innerHTML = "";
                data.forEach((message) => {
                     const divExterior = document.createElement("div");
                     divExterior.classList.add(claseMSJ);
                     const pInterior = document.createElement("p");
                     pInterior.id = `message${message.id_message}`;
-                    pInterior.textContent = message.message;                    
+                    pInterior.textContent = message.message;
                     divExterior.appendChild(pInterior);
-                    contenedor.appendChild(divExterior);                    
+                    contenedor.appendChild(divExterior);
                });
           })
           .catch((error) => {
                document.getElementById("message").innerHTML =
                     "Ocurrió un error.";
+          });
+}
+
+const inputMsj = document.getElementById("input_msj");
+const enviarMsj = document.getElementById("enviar_msj");
+
+enviarMsj.addEventListener("click", () => {     
+     create_msj(inputMsj.value);     
+});
+
+function create_msj(mensaje) {
+     const url = `http://127.0.0.1:5000/messages/${mensaje}/${channel_id}`;     
+     const data = {};     
+     fetch(url, {
+          method: "POST",
+          headers: {
+               "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+          credentials: "include",
+     })
+          .then((response) => {
+               if (response.status === 201) {
+                    return response.json().then((data) => {
+                         inputMsj.value = "";
+                    });
+               } else {
+                    return response.json().then((data) => {
+                         document.getElementById("message").innerHTML =
+                              data.message;
+                         // window.location.href = "home.html";
+                    });
+               }
+          })
+          .catch((error) => {
+               document.getElementById("message").innerHTML =
+                    "Ocurrió un error.";
+               // window.location.href = "home.html";
           });
 }

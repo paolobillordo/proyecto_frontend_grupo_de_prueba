@@ -6,7 +6,9 @@ if (perfil){
 }
 
 window.addEventListener("load", function () {
-    get_profile();
+    if (document.title === "Profile") {
+        get_profile();
+    }
 });
 
 function get_profile() {
@@ -30,6 +32,6 @@ function get_profile() {
         })
         .catch((error) => {
             document.getElementById("message").innerHTML =
-                "Ocurrió un error.";
+                "Ocurrió un error, profile";
         });
 }
