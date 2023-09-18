@@ -287,8 +287,11 @@ enviarMsj.addEventListener("click", () => {
 });
 
 function create_msj(mensaje) {
-     const url = `http://127.0.0.1:5000/messages/${mensaje}/${channel_id}`;     
-     const data = {};     
+     const url = `http://127.0.0.1:5000/messages/`;     
+     const data = {
+          message: mensaje,
+          id_channel: channel_id
+     };     
      fetch(url, {
           method: "POST",
           headers: {
