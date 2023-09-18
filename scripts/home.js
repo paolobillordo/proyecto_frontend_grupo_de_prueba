@@ -2,9 +2,26 @@ document.getElementById("logout").addEventListener("click", logout);
 
 window.addEventListener("load", function () {
      if (document.title === "Home") {
+          get_session();
           get_servers();
      }
 });
+
+function get_session() {
+     const url = "http://127.0.0.1:5000/users/get_session";
+
+     fetch(url, {
+          method: "GET",
+          credentials: "include",
+     })
+          .then((response) => {
+               if (response.status === 204) {
+                    return response.json().then((data) => {
+                         window.location.href = "login.html";
+                    });
+               }
+          })          
+}
 
 function get_servers() {
      const url = "http://127.0.0.1:5000/servers/user";
@@ -287,8 +304,11 @@ enviarMsj.addEventListener("click", () => {
 });
 
 function create_msj(mensaje) {
-     const url = `http://127.0.0.1:5000/messages/${mensaje}/${channel_id}`;     
-     const data = {};     
+     const url = `http://127.0.0.1:5000/messages/`;     
+     const data = {
+          message: mensaje,
+          id_channel: channel_id
+     };     
      fetch(url, {
           method: "POST",
           headers: {
