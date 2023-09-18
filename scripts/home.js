@@ -40,6 +40,8 @@ function get_servers() {
                          contenedor_msjs.innerHTML = "";
                          get_channels(server.name_server);
                          clearInterval(intervalID);
+                         server_id = server.id_server
+                         server_name = server.name_server
                     });
                });
           })
@@ -314,3 +316,59 @@ function create_msj(mensaje) {
                // window.location.href = "home.html";
           });
 }
+
+
+const btncrearCanal = document.getElementById("crear_canal");
+const modalChannel = document.getElementById("modal_channel")
+const cancelCanal = document.getElementById("cancel_channel")
+const crearCanal = document.getElementById("create_channel")
+
+btncrearCanal.addEventListener("click", () => {
+     modalChannel.style.display = "block"
+})
+cancelCanal.addEventListener("click", () => {
+     modalChannel.style.display = "none"
+})
+
+crearCanal.addEventListener("click", () => {
+     create_channel();
+     modalChannel.style.display = "none"
+})
+
+var server_id
+var server_name
+function create_channel() {
+     const data = {
+          name_channel: document.getElementById("name_channel").value,
+          description: document.getElementById("desc_channel").value,
+          id_server: server_id          
+     };
+     fetch("http://127.0.0.1:5000/channels/", {
+          method: "POST",
+          headers: {
+               "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+          credentials: "include",
+     })
+          .then((response) => {
+               if (response.status === 201) {
+                    return response.json().then((data) => {
+                         get_channels(server_name)
+                         //window.location.href = "home.html";
+                    });
+               } else {
+                    return response.json().then((data) => {
+                         document.getElementById("message").innerHTML =
+                              data.message;
+                         window.location.href = "home.html";
+                    });
+               }
+          })
+          .catch((error) => {
+               document.getElementById("message").innerHTML =
+                    "Ocurrió un error.";
+               window.location.href = "home.html";
+          });
+}
+

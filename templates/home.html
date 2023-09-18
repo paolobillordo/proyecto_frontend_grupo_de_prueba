@@ -13,9 +13,9 @@
                 <div id="servers">
                    
                 </div>
+                <button id="buscar_server">Explorar servidores</button>
+                <button id="server">Crear servidor</button>
             </div>
-            <button id="buscar_server">Explorar servidores</button>
-            <button id="server">Crear servidor</button>
             <div class="user_log">
                 <img src="" alt="Image user">
                 <h3 id="perfil">Nickname</h3>
@@ -28,7 +28,7 @@
             <div id="channels">
                 
             </div>
-            <button id="canales">Crear canal</button>
+            <button id="crear_canal">Crear canal</button>
         </div>
 
         <div class="grid-item3">
@@ -55,9 +55,7 @@
                 </div>
                 <h2>Icono Seleccionado:</h2>
                 <div id="selected-icon">
-
-                </div>
-                
+                </div>                
                 <button type="button" id="create_server">Crear</button>
             </form>
         </div>
@@ -68,6 +66,20 @@
             <p>Ha creado el servidor: </p>
             <p id="modal_message"></p>
             <button id="btn_ok" class="btn_ok">OK</button>
+        </div>
+    </div>
+
+    <div id="modal_channel">
+        <div id="modal_container_channel">
+            <form id = "channel_form">
+                <h1>Crear Canal</h1>
+                <label>Nombre del Canal</label>
+                <input type="text" id ="name_channel" required><br>
+                <textarea id="desc_channel" cols="30" rows="10">Descripción</textarea><br> 
+                
+                <button type="button" id="create_channel">Crear</button>
+                <button type="button" id="cancel_channel">Cancelar</button>
+            </form>
         </div>
     </div>
 
