@@ -35,3 +35,11 @@ function get_profile() {
                 "Ocurrió un error, profile";
         });
 }
+
+const btnVolver = document.getElementById("btnVolver")
+if (btnVolver){ 
+    btnVolver.addEventListener("click", () => {
+        window.location.href = "home.html"
+    })
+}
+

@@ -1,0 +1,18 @@
+.classEditar img {
+    width: 20px; /* Ajusta el tamaño deseado */
+    height: 20px;
+  }
+
+.divClassEdit {
+    display: flex;
+    align-items: center;
+    margin-right: 100px;
+}
+.divClassEdit h2 {
+    margin-bottom: 10px; /* Ajusta el valor del margen inferior según tus necesidades */
+    margin-right: 10px;
+}
+
+.btnVolver{
+
+}
