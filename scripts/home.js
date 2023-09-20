@@ -6,6 +6,7 @@ window.addEventListener("load", function () {
           get_servers();
      }
 });
+var idUser;
 
 function get_session() {
      const url = "http://127.0.0.1:5000/users/get_session";
@@ -14,7 +15,13 @@ function get_session() {
           method: "GET",
           credentials: "include",
      }).then((response) => {
-          if (response.status === 204) {
+          if (response.status === 200) {
+               response.json().then((data) => {
+                    idUser = data.id_user;
+                    console.log(idUser)
+                    return;
+               });
+          } else if (response.status === 204) {
                return (window.location.href = "login.html");
           }
      });
@@ -281,10 +288,29 @@ function get_msjs(id_channel) {
                data.forEach((message) => {
                     const divExterior = document.createElement("div");
                     divExterior.classList.add(claseMSJ);
+                    const imgUser = document.createElement("img");
+                    imgUser.src = "../assets/icon_server/9.ico";
+                    const nickUser = document.createElement("h2");
+                    nickUser.textContent = message.nick_name;
+                    const dateMsj = document.createElement("span");
+                    dateMsj.textContent = message.create_date;
                     const pInterior = document.createElement("p");
                     pInterior.id = `message${message.id_message}`;
                     pInterior.textContent = message.message;
+                    divExterior.appendChild(nickUser);
+                    divExterior.appendChild(imgUser);
                     divExterior.appendChild(pInterior);
+                    divExterior.appendChild(dateMsj);
+                    if (idUser === message.id_user) {
+                         const imgDelete = document.createElement("img");
+                         imgDelete.src = "../assets/iconos/basurero.png";
+                         imgDelete.classList.add("garbage");
+                         const imgUpdate = document.createElement("img");
+                         imgUpdate.src = "../assets/lapiz.png";
+                         imgUpdate.classList.add("update_msj");
+                         divExterior.appendChild(imgUpdate);
+                         divExterior.appendChild(imgDelete);
+                    }
                     contenedor.appendChild(divExterior);
                });
           })
@@ -335,20 +361,18 @@ function create_msj(mensaje) {
           });
 }
 
-
 //desde aca
 
-enviarMsj.addEventListener("click", () => {     
-     create_msj(inputMsj.value);     
+enviarMsj.addEventListener("click", () => {
+     create_msj(inputMsj.value);
 });
 
 inputMsj.addEventListener("keydown", (event) => {
      if (event.key === "Enter") {
-          event.preventDefault(); 
+          event.preventDefault();
           create_msj(inputMsj.value);
      }
 });
-
 
 //hasta aca
 
