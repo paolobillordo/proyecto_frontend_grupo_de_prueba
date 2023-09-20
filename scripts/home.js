@@ -335,6 +335,23 @@ function create_msj(mensaje) {
           });
 }
 
+
+//desde aca
+
+enviarMsj.addEventListener("click", () => {     
+     create_msj(inputMsj.value);     
+});
+
+inputMsj.addEventListener("keydown", (event) => {
+     if (event.key === "Enter") {
+          event.preventDefault(); 
+          create_msj(inputMsj.value);
+     }
+});
+
+
+//hasta aca
+
 const btncrearCanal = document.getElementById("crear_canal");
 const modalChannel = document.getElementById("modal_channel");
 const cancelCanal = document.getElementById("cancel_channel");
