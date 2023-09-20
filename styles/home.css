@@ -185,3 +185,18 @@ body {
 .update_msj, .garbage {
     height: 40px;
 }
+
+#img_perfil {
+    height: 100px;
+}
+
+#user_session {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.img_in_message {
+    height: 50px;
+}

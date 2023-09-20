@@ -1,4 +1,4 @@
-const perfil = document.getElementById("perfil")
+const perfil = document.getElementById("user_session")
 if (perfil){ 
     perfil.addEventListener("click", () => {
         window.location.href = "profile.html"

@@ -1,16 +1,26 @@
+var idUser;
+var imgSession;
+var nickSession;
+
 document.getElementById("logout").addEventListener("click", logout);
 
 window.addEventListener("load", function () {
      if (document.title === "Home") {
-          get_session();
           get_servers();
+          setTimeout(function() {
+               get_session();
+          }, 1000);
      }
 });
-var idUser;
+
+const nick_perfil = document.getElementById('perfil')
+const img_perfil = document.getElementById('img_perfil')
+
+
 
 function get_session() {
      const url = "http://127.0.0.1:5000/users/get_session";
-
+     
      fetch(url, {
           method: "GET",
           credentials: "include",
@@ -18,7 +28,10 @@ function get_session() {
           if (response.status === 200) {
                response.json().then((data) => {
                     idUser = data.id_user;
-                    console.log(idUser)
+                    imgSession = data.image;
+                    nickSession = data.nick_name
+                    nick_perfil.textContent = nickSession
+                    img_perfil.src = imgSession                    
                     return;
                });
           } else if (response.status === 204) {
@@ -101,7 +114,7 @@ const crearServer = document.getElementById("server");
 const modal_server = document.getElementById("modal_server");
 const modal_container = document.getElementById("modal_container");
 const create_server = document.getElementById("create_server");
-const cancel_crear_server = document.getElementById("cancel_crear_server")
+const cancel_crear_server = document.getElementById("cancel_crear_server");
 
 crearServer.addEventListener("click", () => {
      modal_server.style.display = "block";
@@ -110,12 +123,12 @@ crearServer.addEventListener("click", () => {
 cancel_crear_server.addEventListener("click", () => {
      modal_server.style.display = "none";
      name_server = document.getElementById("name_server");
-     desc_server = document.getElementById("desc_server")
-     sel_icon = document.getElementById("selected-icon")
-     name_server.value="";
-     desc_server.value="Descripción";
-     sel_icon.textContent = ""
-})
+     desc_server = document.getElementById("desc_server");
+     sel_icon = document.getElementById("selected-icon");
+     name_server.value = "";
+     desc_server.value = "Descripción";
+     sel_icon.textContent = "";
+});
 
 // window.addEventListener("click", (e) => {
 //      if (e.target === modal_server) {
@@ -300,7 +313,8 @@ function get_msjs(id_channel) {
                     const divExterior = document.createElement("div");
                     divExterior.classList.add(claseMSJ);
                     const imgUser = document.createElement("img");
-                    imgUser.src = "../assets/icon_server/9.ico";
+                    imgUser.src = message.image;
+                    imgUser.classList.add("img_in_message")
                     const nickUser = document.createElement("h2");
                     nickUser.textContent = message.nick_name;
                     const dateMsj = document.createElement("span");
@@ -308,8 +322,8 @@ function get_msjs(id_channel) {
                     const pInterior = document.createElement("p");
                     pInterior.id = `message${message.id_message}`;
                     pInterior.textContent = message.message;
-                    divExterior.appendChild(nickUser);
                     divExterior.appendChild(imgUser);
+                    divExterior.appendChild(nickUser);
                     divExterior.appendChild(pInterior);
                     divExterior.appendChild(dateMsj);
                     if (idUser === message.id_user) {
