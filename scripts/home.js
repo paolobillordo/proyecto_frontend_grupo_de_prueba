@@ -13,14 +13,11 @@ function get_session() {
      fetch(url, {
           method: "GET",
           credentials: "include",
-     })
-          .then((response) => {
-               if (response.status === 204) {
-                    return response.json().then((data) => {
-                         window.location.href = "login.html";
-                    });
-               }
-          })          
+     }).then((response) => {
+          if (response.status === 204) {
+               return (window.location.href = "login.html");
+          }
+     });
 }
 
 function get_servers() {
@@ -32,7 +29,7 @@ function get_servers() {
           .then((response) => response.json())
           .then((data) => {
                const contenedor = document.getElementById("servers");
-               const claseServers = "server";               
+               const claseServers = "server";
                data.forEach((server) => {
                     const divExterior = document.createElement("div");
                     divExterior.classList.add(claseServers);
@@ -57,8 +54,8 @@ function get_servers() {
                          contenedor_msjs.innerHTML = "";
                          get_channels(server.name_server);
                          clearInterval(intervalID);
-                         server_id = server.id_server
-                         server_name = server.name_server
+                         server_id = server.id_server;
+                         server_name = server.name_server;
                     });
                });
           })
@@ -181,9 +178,10 @@ function create_ser() {
           });
 }
 
-function create_use_ser() {
+var server_select;
+function create_use_ser(name_serv) {
      const data = {
-          name_server: modalMessage.textContent,
+          name_server: name_serv,
      };
      fetch("http://127.0.0.1:5000/servers/use_ser", {
           method: "POST",
@@ -220,7 +218,7 @@ const modalMessage = document.getElementById("modal_message");
 const inputValue = document.getElementById("name_server");
 
 btnOK.addEventListener("click", () => {
-     create_use_ser();
+     create_use_ser(modalMessage.textContent);
      modal.style.display = "none";
 });
 
@@ -299,16 +297,16 @@ function get_msjs(id_channel) {
 const inputMsj = document.getElementById("input_msj");
 const enviarMsj = document.getElementById("enviar_msj");
 
-enviarMsj.addEventListener("click", () => {     
-     create_msj(inputMsj.value);     
+enviarMsj.addEventListener("click", () => {
+     create_msj(inputMsj.value);
 });
 
 function create_msj(mensaje) {
-     const url = `http://127.0.0.1:5000/messages/`;     
+     const url = `http://127.0.0.1:5000/messages/`;
      const data = {
           message: mensaje,
-          id_channel: channel_id
-     };     
+          id_channel: channel_id,
+     };
      fetch(url, {
           method: "POST",
           headers: {
@@ -337,31 +335,30 @@ function create_msj(mensaje) {
           });
 }
 
-
 const btncrearCanal = document.getElementById("crear_canal");
-const modalChannel = document.getElementById("modal_channel")
-const cancelCanal = document.getElementById("cancel_channel")
-const crearCanal = document.getElementById("create_channel")
+const modalChannel = document.getElementById("modal_channel");
+const cancelCanal = document.getElementById("cancel_channel");
+const crearCanal = document.getElementById("create_channel");
 
 btncrearCanal.addEventListener("click", () => {
-     modalChannel.style.display = "block"
-})
+     modalChannel.style.display = "block";
+});
 cancelCanal.addEventListener("click", () => {
-     modalChannel.style.display = "none"
-})
+     modalChannel.style.display = "none";
+});
 
 crearCanal.addEventListener("click", () => {
      create_channel();
-     modalChannel.style.display = "none"
-})
+     modalChannel.style.display = "none";
+});
 
-var server_id
-var server_name
+var server_id;
+var server_name;
 function create_channel() {
      const data = {
           name_channel: document.getElementById("name_channel").value,
           description: document.getElementById("desc_channel").value,
-          id_server: server_id          
+          id_server: server_id,
      };
      fetch("http://127.0.0.1:5000/channels/", {
           method: "POST",
@@ -374,7 +371,7 @@ function create_channel() {
           .then((response) => {
                if (response.status === 201) {
                     return response.json().then((data) => {
-                         get_channels(server_name)
+                         get_channels(server_name);
                          //window.location.href = "home.html";
                     });
                } else {
@@ -392,3 +389,82 @@ function create_channel() {
           });
 }
 
+const buscarServer = document.getElementById("buscar_server");
+const bsrSerModal = document.getElementById("modal_buscar_server");
+const cancelBuscar = document.getElementById("cancel_server");
+const selectedServer = document.getElementById("selected-server");
+
+buscarServer.addEventListener("click", () => {
+     bsrSerModal.style.display = "block";
+     get_all_servers();
+});
+cancelBuscar.addEventListener("click", () => {
+     selectedServer.innerHTML = "";
+     bsrSerModal.style.display = "none";
+});
+
+function get_all_servers() {
+     const url = "http://127.0.0.1:5000/servers/";
+     fetch(url, {
+          method: "GET",
+          credentials: "include",
+     })
+          .then((response) => response.json())
+          .then((data) => {
+               const contenedor = document.getElementById("server-list");
+               const claseServers = "server_select";
+               contenedor.innerHTML = "";
+               data.forEach((server) => {
+                    const divExterior = document.createElement("div");
+                    divExterior.classList.add(claseServers);
+                    const imgInterior = document.createElement("img");
+                    imgInterior.src = server.icono;
+                    const h2Interior = document.createElement("h2");
+                    h2Interior.textContent = server.name_server;
+                    const h3Interior = document.createElement("h3");
+                    h3Interior.textContent = server.description;
+
+                    divExterior.appendChild(h2Interior);
+                    divExterior.appendChild(imgInterior);
+                    divExterior.appendChild(h3Interior);
+                    contenedor.appendChild(divExterior);
+                    divExterior.addEventListener("click", () => {
+                         selectedServer.innerHTML = "";
+                         const serverClone = divExterior.cloneNode(true);
+                         serverClone.id = "sel_server";
+                         selectedServer.appendChild(serverClone);
+                         server_select = server.name_server;
+                    });
+               });
+          })
+          .catch((error) => {
+               document.getElementById("message").innerHTML =
+                    "Ocurrió un error.";
+          });
+}
+
+const unirseServer = document.getElementById("unirse_server");
+
+unirseServer.addEventListener("click", () => {
+     create_use_ser(server_select);
+});
+
+const filtroInput = document.getElementById("filter");
+
+filtroInput.addEventListener("input", function () {
+     filtrarElementos();
+});
+
+function filtrarElementos() {
+     const serversDivs = document.querySelectorAll(".server_select");
+     const filtroTexto = filtroInput.value.toLowerCase();
+     serversDivs.forEach((elemento) => {
+          const h2 = elemento.querySelector("h2");
+          const nombre = h2.textContent.toLowerCase();
+          if (filtroTexto === "" || nombre.includes(filtroTexto)) {
+               elemento.style.display = "block";
+          } else {
+               elemento.style.display = "none";
+          }
+     });
+}

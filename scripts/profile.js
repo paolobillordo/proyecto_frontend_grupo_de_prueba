@@ -44,6 +44,8 @@ if (btnVolver){
 }
 
 const btn_nick = document.getElementById("btn_nick")
-btn_nick.addEventListener("click", () => {
-    window.location.href = ""
-})
+if (btn_nick) {
+    btn_nick.addEventListener("click", () => {
+        window.location.href = ""
+    })
+}
