@@ -94,10 +94,21 @@ const crearServer = document.getElementById("server");
 const modal_server = document.getElementById("modal_server");
 const modal_container = document.getElementById("modal_container");
 const create_server = document.getElementById("create_server");
+const cancel_crear_server = document.getElementById("cancel_crear_server")
 
 crearServer.addEventListener("click", () => {
      modal_server.style.display = "block";
 });
+
+cancel_crear_server.addEventListener("click", () => {
+     modal_server.style.display = "none";
+     name_server = document.getElementById("name_server");
+     desc_server = document.getElementById("desc_server")
+     sel_icon = document.getElementById("selected-icon")
+     name_server.value="";
+     desc_server.value="Descripción";
+     sel_icon.textContent = ""
+})
 
 // window.addEventListener("click", (e) => {
 //      if (e.target === modal_server) {
