@@ -55,15 +55,17 @@ function get_servers() {
                     divExterior.classList.add(claseServers);
                     const imgInterior = document.createElement("img");
                     imgInterior.src = server.icono;
-                    const buttonImg = document.createElement("button");
+                    imgInterior.classList.add("img_server")
+                    const buttonImg = document.createElement("div");
                     buttonImg.classList.add("button_img");
                     buttonImg.type = "button";
                     buttonImg.id = server.name_server;
-                    const h2Interior = document.createElement("h2");
+                    const h2Interior = document.createElement("span");
+                    h2Interior.classList.add("name_list_server")
                     h2Interior.textContent = server.name_server;
                     buttonImg.appendChild(imgInterior);
-                    divExterior.appendChild(buttonImg);
                     buttonImg.appendChild(h2Interior);
+                    divExterior.appendChild(buttonImg);
                     contenedor.appendChild(divExterior);
                     button_channel = document.getElementById(
                          server.name_server
