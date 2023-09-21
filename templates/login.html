@@ -9,18 +9,26 @@
 </head>
 
 <body>
-    <h1>Login</h1>
-    <form id="loginForm">
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <button type="submit">Login</button>
-        <button type="button" id="register">Registrar</button>
-    </form>
-    <div id="message"></div>
+    <div id="login_container">
+        <h1>Logueate...</h1>
+        <form id="loginForm">
+            <label class="label_login" for="email">Email</label><br>
+            <input class="input_login" type="text" id="email" name="email" required>
+            <br>
+            <label class="label_login" for="password">Password</label><br>
+            <input class="input_login" type="password" id="password" name="password" required>
+            <br>
+            <button id="boton_login" type="submit">Ingresar</button>
+            
+        </form>
+        <h3>No tienes cuenta?</h3> 
+        <img src="../assets/gallo_enojado.png" alt="" id="gallo_enojado">
+        <h3 id="register">Registrate</h3>
+        <div id="message"></div>
+
+    </div>
+
+
     <div id="modal_register">
         <div id="modal_container">
             <form id = "register_form">

@@ -1,0 +1,25 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle, rgb(35, 32, 32), rgba(0, 0, 0, 1));
+    background-size: auto;
+    background-position: center;
+    font-family: 'Courier New', Courier, monospace;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.content {
+    text-align: center;
+    color: #fff;
+}
+h1 {
+    font-size: 36px;
+}
+
+img {
+    height: 500px;
+}

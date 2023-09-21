@@ -1,3 +1,66 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle, rgb(35, 32, 32), rgba(0, 0, 0, 1));
+    background-size: auto;
+    background-position: center;
+    font-family: 'Courier New', Courier, monospace;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+}
+
+#login_container {
+    display: flex;
+    flex-direction: column;
+    height: 650px;
+    width: 450px;
+    background-color: #333333;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    box-shadow: 10px 10px 10px rgba(131, 1, 1, 0.5);
+    
+}
+
+.input_login {
+    width: 400px;
+    height: 50px;
+    border-radius: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.75rem;    
+}
+
+.label_login {
+    font-size: 1.75rem;
+}
+
+#gallo_enojado {
+    height: 200px;
+}
+
+#boton_login {
+    height: 50px;
+    width: 410px;
+    border-radius: 25px;
+    font-size: 2rem;
+    color: aliceblue;
+    background-color: #152f1a;
+}
+
+#register {
+    color: aliceblue;
+}
+
+#register:hover {
+    color: rgb(9, 55, 96);
+    cursor: pointer;
+}
+
 #modal_register{
     display: none;
     position: fixed;
