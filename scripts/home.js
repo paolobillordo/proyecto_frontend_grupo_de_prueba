@@ -168,12 +168,9 @@ iconFiles.forEach((iconFile) => {
 create_server.addEventListener("click", (e) => {
      e.preventDefault();
      create_ser();
-     modal_server.style.display = "none";
-     modal.style.display = "block";
-     const mensaje = inputValue.value;
-     modalMessage.textContent = mensaje;
 });
 
+const mensajito = document.getElementById("mensajito")
 function create_ser() {
      const miImagen = document.getElementById("sel_icon");
      const data = {
@@ -189,16 +186,22 @@ function create_ser() {
           body: JSON.stringify(data),
           credentials: "include",
      })
-          .then((response) => {
-               if (response.status === 201) {
-                    return response.json().then((data) => {
-                         //window.location.href = "home.html";
-                    });
+     .then((response) => {
+          if (response.status === 201) {
+               return response.json().then((data) => {
+                    modal_server.style.display = "none";
+                    modal.style.display = "block";
+                    const mensaje = inputValue.value;
+                    mensajito.textContent = "Ha creado el servidor:";
+                    modalMessage.textContent = mensaje;
+               });
                } else {
                     return response.json().then((data) => {
-                         document.getElementById("message").innerHTML =
-                              data.message;
-                         window.location.href = "home.html";
+                         modal_server.style.display = "none";
+                         modal.style.display = "block";
+                         mensajito.textContent = "El servidor ya existe:";
+                         const mensaje = "Quieres unirte a el?";
+                         modalMessage.textContent = mensaje;
                     });
                }
           })
@@ -245,11 +248,16 @@ function create_use_ser(name_serv) {
 const modal = document.getElementById("modal_ok");
 const btnOpenModal = document.getElementById("create_server");
 const btnOK = document.getElementById("btn_ok");
+const btnNo = document.getElementById("btn_no_ok");
 const modalMessage = document.getElementById("modal_message");
 const inputValue = document.getElementById("name_server");
 
 btnOK.addEventListener("click", () => {
      create_use_ser(modalMessage.textContent);
+     modal.style.display = "none";
+});
+
+btnNo.addEventListener("click", () => {
      modal.style.display = "none";
 });
 
