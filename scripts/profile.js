@@ -48,8 +48,9 @@ const modifica_name = document.getElementById("lapiz_name")
 const modifica_last = document.getElementById("lapiz_last")
 const modifica_email = document.getElementById("lapiz_email")
 const edit_modal = document.getElementById("edit_modal")
-modifica_imagen.addEventListener("click", () => {
 
+modifica_imagen.addEventListener("click", () => {
+    // ojo al piojo que nos falta traer la imagen de perfil.
 })
 
 modifica_nick.addEventListener("click", () => {
@@ -74,9 +75,10 @@ modifica_nick.addEventListener("click", () => {
     btn_ok.addEventListener("click", (e) => {
         e.preventDefault()
         update_user("nick_name", input_nick.value)
-
+        
+        
     })
-
+    
 })
 
 modifica_name.addEventListener("click", () => {
@@ -98,6 +100,11 @@ modifica_name.addEventListener("click", () => {
         edit_modal.style.display = "none";
         contenedor.textContent = ""
     })
+    btn_ok.addEventListener("click", (e) => {
+        e.preventDefault()
+        update_user("first_name", input_name.value)
+    })
+
 })
 
 modifica_last.addEventListener("click", () => {
@@ -119,6 +126,10 @@ modifica_last.addEventListener("click", () => {
         edit_modal.style.display = "none";
         contenedor.textContent = ""
     })
+    btn_ok.addEventListener("click", (e) => {
+        e.preventDefault()
+        update_user("last_name", input_Apellido.value)
+    })
 })
 
 modifica_email.addEventListener("click", () => {
@@ -127,7 +138,7 @@ modifica_email.addEventListener("click", () => {
     const titulo = document.createElement("h2")
     titulo.textContent = "Modificar Email:"
     const input_email = document.createElement("input")
-    input_email.placeholder = usuario_data.last_name
+    input_email.placeholder = usuario_data.email
     const btn_ok = document.createElement("button")
     btn_ok.textContent = "Ok"
     const btn_cancel = document.createElement("button")
@@ -139,6 +150,10 @@ modifica_email.addEventListener("click", () => {
     btn_cancel.addEventListener("click", () => {
         edit_modal.style.display = "none";
         contenedor.textContent = ""
+    })
+    btn_ok.addEventListener("click", (e) => {
+        e.preventDefault()
+        update_user("email", input_email.value)
     })
 })
 
@@ -168,6 +183,8 @@ function update_user(clave, valor) {
                 btn_ok.addEventListener("click", () => {
                     contenedor.textContent = ""
                     edit_modal.style.display = "none"
+                    get_profile();
+
                 })
 
 
@@ -183,6 +200,7 @@ function update_user(clave, valor) {
                 btn_ok.addEventListener("click", () => {
                     contenedor.textContent = ""
                     edit_modal.style.display = "none"
+
                 })
             }
         })
