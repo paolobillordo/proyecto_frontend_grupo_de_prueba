@@ -18,7 +18,7 @@
     height: 30px;
 }
 
-#profile_container, #edit_modal{
+#profile_container, #edit_modal,#msj_modal{
     display: none;
     position: fixed;
     top: 0;
@@ -30,7 +30,7 @@
 
 }
 
-#profile_modal, #edit_container {
+#profile_modal, #edit_container,#delet_container{
     position: absolute;
     top: 50%;
     left: 50%;

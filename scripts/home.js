@@ -319,6 +319,7 @@ function get_msjs(id_channel) {
                const contenedor = document.getElementById("msj_canal");
                const claseMSJ = "messages";
                contenedor.innerHTML = "";
+               let incrementar=0;
                data.forEach((message) => {
                     const divExterior = document.createElement("div");
                     divExterior.classList.add(claseMSJ);
@@ -340,6 +341,9 @@ function get_msjs(id_channel) {
                          const imgDelete = document.createElement("img");
                          imgDelete.src = "../assets/iconos/basurero.png";
                          imgDelete.classList.add("garbage");
+                         imgDelete.id = "del_"+incrementar.toString();//Esto le da un id distinto a cada msj.
+                         incrementar++;
+                         imgDelete.onclick = function() {model_eliminar_msj(message.id_message)};                         
                          const imgUpdate = document.createElement("img");
                          imgUpdate.src = "../assets/lapiz.png";
                          imgUpdate.classList.add("update_msj");
@@ -376,6 +380,7 @@ function create_msj(mensaje) {
           body: JSON.stringify(data),
           credentials: "include",
      })
+          .then((response) => response.json())
           .then((response) => {
                if (response.status === 201) {
                     return response.json().then((data) => {
@@ -543,4 +548,108 @@ function filtrarElementos() {
                elemento.style.display = "none";
           }
      });
+}
+
+// delete mensajes
+const vaciar = document.getElementById("del_1")
+if (vaciar){
+     vaciar.addEventListener("click", () => {
+          const msj_modal = document.getElementById("msj_modal")
+          const delet_container = document.getElementById("delet_container")
+          msj_modal.style.display = block
+          delet_container.style.display = block
+          const titulo = document.createElement("h2")
+          titulo.textContent = "ELIMINAR MSJ"
+          delet_container.appendChild(titulo) 
+     })}
+
+function model_eliminar_msj(id_message) {//crea el model para preguntar si se elimina el msj
+     console.log("Se hizo clic en la imagen");
+     const msj_modal = document.getElementById("msj_modal")
+     const delet_container = document.getElementById("delet_container")
+     msj_modal.style.display = "block"
+     //delet_container.style.display = "block"
+     const titulo = document.createElement("h2")
+     titulo.textContent = "ELIMINAR MSJ?"
+     const btn_ok = document.createElement("button")
+     btn_ok.textContent = "SI"
+     const btn_cancel = document.createElement("button")
+     btn_cancel.textContent = "NO"
+
+     delet_container.appendChild(titulo)
+     delet_container.appendChild(btn_ok)
+     delet_container.appendChild(btn_cancel)
+
+     btn_cancel.addEventListener("click", () => {
+          msj_modal.style.display = "none";
+          delet_container.innerHTML = "";
+     })
+     btn_ok.addEventListener("click", (e) => {
+          e.preventDefault();
+          console.log("Esta entrando al delete.");
+          delete_msj(id_message);
+          console.log("Esta saliendo del delete.");
+          msj_modal.style.display = "none";
+          delet_container.innerHTML = "";
+     })
+
+}
+
+function delete_msj(id_message) {
+     const url = `http://127.0.0.1:5000/messages/${id_message}`;
+
+     fetch(url, {
+          method: "DELETE",
+          credentials: "include",
+     })
+
+          .then((response) => {
+               if (response.ok) {
+                    console.log("MENSAJE ELIMINADO CON EXITO.");
+                    //Utiliza msj_modal para mostrar la eliminacion exitosa.
+                    const msj_modal = document.getElementById("msj_modal");
+                    const delet_container = document.getElementById("delet_container");
+                    msj_modal.style.display = "block";
+                    const titulo = document.createElement("h2");
+                    titulo.textContent = "MENSAJE ELIMINADO EXITOSAMENTE";
+                    delet_container.appendChild(titulo);
+                    const btn_ok = document.createElement("button")
+                    btn_ok.textContent = "OK"
+                    btn_ok.addEventListener("click", (e) => {
+                         e.preventDefault();
+                         msj_modal.style.display = "none";
+                         delet_container.innerHTML = "";
+                    })
+                    delet_container.appendChild(btn_ok);
+               
+               } else {
+                    console.log("Error al eliminar el mensaje. Código de estado:", response.status);
+                    // Puedes realizar acciones adicionales en caso de que la eliminación no sea exitosa
+               }
+          })
+          .catch((error) => {
+               document.getElementById("message").innerHTML = "Ocurrió un error, profile";
+          });
+
+     //Que esta mal escrito en este codigo que escribi? el data???     
+     // .then((response) => response.json())
+     // .then((data) => {
+     //      if (response.ok) {
+     //           console.log("MENSAJE ELIMINADO CON EXITO.");
+     //           const msj_modal = document.getElementById("msj_modal")
+     //           const delet_container = document.getElementById("delet_container")
+     //           msj_modal.style.display = "block"
+     //           const titulo = document.createElement("h2")
+     //           titulo.textContent = "MENSAJE ELIMINADO"
+     //           delet_container.appendChild(titulo)
+     //      } else {
+     //           // QUE SE HACE AQUI?
+     //      }
+
+
+     // })
+     // .catch((error) => {
+     //      document.getElementById("message").innerHTML =
+     //           "Ocurrió un error, profile";
+     // });
 }
