@@ -7,20 +7,18 @@ document.getElementById("logout").addEventListener("click", logout);
 window.addEventListener("load", function () {
      if (document.title === "Home") {
           get_servers();
-          setTimeout(function() {
+          setTimeout(function () {
                get_session();
           }, 1000);
      }
 });
 
-const nick_perfil = document.getElementById('perfil')
-const img_perfil = document.getElementById('img_perfil')
-
-
+const nick_perfil = document.getElementById("perfil");
+const img_perfil = document.getElementById("img_perfil");
 
 function get_session() {
      const url = "http://127.0.0.1:5000/users/get_session";
-     
+
      fetch(url, {
           method: "GET",
           credentials: "include",
@@ -29,9 +27,9 @@ function get_session() {
                response.json().then((data) => {
                     idUser = data.id_user;
                     imgSession = data.image;
-                    nickSession = data.nick_name
-                    nick_perfil.textContent = nickSession
-                    img_perfil.src = imgSession                    
+                    nickSession = data.nick_name;
+                    nick_perfil.textContent = nickSession;
+                    img_perfil.src = imgSession;
                     return;
                });
           } else if (response.status === 204) {
@@ -55,16 +53,16 @@ function get_servers() {
                     divExterior.classList.add(claseServers);
                     const imgInterior = document.createElement("img");
                     imgInterior.src = server.icono;
-                    imgInterior.classList.add("img_server")
+                    imgInterior.classList.add("img_server");
                     const buttonImg = document.createElement("div");
                     buttonImg.classList.add("button_img");
                     buttonImg.type = "button";
                     buttonImg.id = server.name_server;
-                    const h2Interior = document.createElement("span");
-                    h2Interior.classList.add("name_list_server")
-                    h2Interior.textContent = server.name_server;
+                    // const h2Interior = document.createElement("span");
+                    // h2Interior.classList.add("name_list_server")
+                    // h2Interior.textContent = server.name_server;
                     buttonImg.appendChild(imgInterior);
-                    buttonImg.appendChild(h2Interior);
+                    // buttonImg.appendChild(h2Interior);
                     divExterior.appendChild(buttonImg);
                     contenedor.appendChild(divExterior);
                     button_channel = document.getElementById(
@@ -78,6 +76,7 @@ function get_servers() {
                          clearInterval(intervalID);
                          server_id = server.id_server;
                          server_name = server.name_server;
+                         divExterior.style.backgroundColor = "black";
                     });
                });
           })
@@ -157,6 +156,7 @@ iconFiles.forEach((iconFile) => {
      const img = document.createElement("img");
      img.src = iconDirectory + iconFile;
      img.alt = iconFile;
+     img.style.height = "80px"
      img.addEventListener("click", () => {
           const selectedIcon = document.getElementById("selected-icon");
           selectedIcon.innerHTML = "";
@@ -172,7 +172,7 @@ create_server.addEventListener("click", (e) => {
      create_ser();
 });
 
-const mensajito = document.getElementById("mensajito")
+const mensajito = document.getElementById("mensajito");
 function create_ser() {
      const miImagen = document.getElementById("sel_icon");
      const data = {
@@ -188,15 +188,15 @@ function create_ser() {
           body: JSON.stringify(data),
           credentials: "include",
      })
-     .then((response) => {
-          if (response.status === 201) {
-               return response.json().then((data) => {
-                    modal_server.style.display = "none";
-                    modal.style.display = "block";
-                    const mensaje = inputValue.value;
-                    mensajito.textContent = "Ha creado el servidor:";
-                    modalMessage.textContent = mensaje;
-               });
+          .then((response) => {
+               if (response.status === 201) {
+                    return response.json().then((data) => {
+                         modal_server.style.display = "none";
+                         modal.style.display = "block";
+                         const mensaje = inputValue.value;
+                         mensajito.textContent = "Ha creado el servidor:";
+                         modalMessage.textContent = mensaje;
+                    });
                } else {
                     return response.json().then((data) => {
                          modal_server.style.display = "none";
@@ -273,6 +273,10 @@ function get_channels(name_server) {
           .then((response) => response.json())
           .then((data) => {
                const contenedor = document.getElementById("channels");
+               const nameServer = document.getElementById(
+                    "name_server_channel"
+               );
+               nameServer.textContent = name_server;
                const claseChannels = "channels";
                contenedor.innerHTML = "";
                data.forEach((channel) => {
@@ -280,13 +284,14 @@ function get_channels(name_server) {
                     divExterior.classList.add(claseChannels);
                     const h2Interior = document.createElement("h2");
                     h2Interior.id = channel.name_channel;
-                    h2Interior.textContent = channel.name_channel;
+                    h2Interior.textContent = "# " + channel.name_channel;
                     divExterior.appendChild(h2Interior);
                     contenedor.appendChild(divExterior);
                     channel_msj = document.getElementById(channel.name_channel);
                     channel_msj.addEventListener("click", () => {
                          get_msjs_10s(channel.id_channel);
                          channel_id = channel.id_channel;
+                         h2Interior.style.color = "blue";
                     });
                });
           })
@@ -322,31 +327,51 @@ function get_msjs(id_channel) {
                data.forEach((message) => {
                     const divExterior = document.createElement("div");
                     divExterior.classList.add(claseMSJ);
+                    const divUserMsj = document.createElement("div");
+                    divUserMsj.classList.add("div_user_msj");
+                    const divUser = document.createElement("div");
+                    divUser.classList.add("div_user");
+                    const divMsj = document.createElement("div");
+                    divMsj.classList.add("div_msj");
                     const imgUser = document.createElement("img");
                     imgUser.src = message.image;
-                    imgUser.classList.add("img_in_message")
+                    imgUser.classList.add("img_in_message");
                     const nickUser = document.createElement("h2");
                     nickUser.textContent = message.nick_name;
                     const dateMsj = document.createElement("span");
                     dateMsj.textContent = message.create_date;
+                    dateMsj.id = "date_message";
                     const pInterior = document.createElement("p");
                     pInterior.id = `message${message.id_message}`;
                     pInterior.textContent = message.message;
-                    divExterior.appendChild(imgUser);
-                    divExterior.appendChild(nickUser);
-                    divExterior.appendChild(pInterior);
                     divExterior.appendChild(dateMsj);
+                    divUser.appendChild(imgUser);
+                    divUser.appendChild(nickUser);
+                    divMsj.appendChild(pInterior);
+                    divUserMsj.appendChild(divUser);
+                    divUserMsj.appendChild(divMsj);
+                    divExterior.appendChild(divUserMsj);
                     if (idUser === message.id_user) {
                          const imgDelete = document.createElement("img");
                          imgDelete.src = "../assets/iconos/basurero.png";
                          imgDelete.classList.add("garbage");
-                         imgDelete.onclick = function() {model_eliminar_msj(message.id_message)};                         
+                         imgDelete.onclick = function () {
+                              model_eliminar_msj(message.id_message);
+                         };
                          const imgUpdate = document.createElement("img");
                          imgUpdate.src = "../assets/lapiz.png";
                          imgUpdate.classList.add("update_msj");
-                         imgUpdate.onclick = function() {model_modificar_msj(message.id_message,message.message)};
-                         divExterior.appendChild(imgUpdate);
-                         divExterior.appendChild(imgDelete);
+                         imgUpdate.onclick = function () {
+                              model_modificar_msj(
+                                   message.id_message,
+                                   message.message
+                              );
+                         };
+                         const divIcons = document.createElement("div");
+                         divIcons.classList.add("div_icons");
+                         divIcons.appendChild(imgUpdate);
+                         divIcons.appendChild(imgDelete)
+                         divExterior.appendChild(divIcons);                         
                     }
                     contenedor.appendChild(divExterior);
                });
@@ -362,6 +387,7 @@ const enviarMsj = document.getElementById("enviar_msj");
 
 enviarMsj.addEventListener("click", () => {
      create_msj(inputMsj.value);
+     inputMsj.value = ''
 });
 
 function create_msj(mensaje) {
@@ -401,14 +427,11 @@ function create_msj(mensaje) {
 
 //desde aca
 
-enviarMsj.addEventListener("click", () => {
-     create_msj(inputMsj.value);
-});
-
 inputMsj.addEventListener("keydown", (event) => {
      if (event.key === "Enter") {
           event.preventDefault();
           create_msj(inputMsj.value);
+          inputMsj.value = ''
      }
 });
 
@@ -549,31 +572,32 @@ function filtrarElementos() {
 }
 
 // delete mensajes
-function model_eliminar_msj(id_message){//crea el model para preguntar si se elimina el msj
-     const msj_modal = document.getElementById("msj_modal")
-     const delet_container = document.getElementById("delet_container")
-     msj_modal.style.display = "block"
-     const titulo = document.createElement("h2")
-     titulo.textContent = "ELIMINAR MSJ?"
-     const btn_ok = document.createElement("button")
-     btn_ok.textContent = "SI"
-     const btn_cancel = document.createElement("button")
-     btn_cancel.textContent = "NO"
+function model_eliminar_msj(id_message) {
+     //crea el model para preguntar si se elimina el msj
+     const msj_modal = document.getElementById("msj_modal");
+     const delet_container = document.getElementById("delet_container");
+     msj_modal.style.display = "block";
+     const titulo = document.createElement("h2");
+     titulo.textContent = "ELIMINAR MSJ?";
+     const btn_ok = document.createElement("button");
+     btn_ok.textContent = "SI";
+     const btn_cancel = document.createElement("button");
+     btn_cancel.textContent = "NO";
 
-     delet_container.appendChild(titulo)
-     delet_container.appendChild(btn_ok)
-     delet_container.appendChild(btn_cancel)
+     delet_container.appendChild(titulo);
+     delet_container.appendChild(btn_ok);
+     delet_container.appendChild(btn_cancel);
 
      btn_cancel.addEventListener("click", () => {
           msj_modal.style.display = "none";
           delet_container.innerHTML = "";
-     })
+     });
      btn_ok.addEventListener("click", (e) => {
           e.preventDefault();
           delete_msj(id_message);
           msj_modal.style.display = "none";
           delet_container.innerHTML = "";
-     })
+     });
 }
 
 function delete_msj(id_message) {
@@ -583,71 +607,74 @@ function delete_msj(id_message) {
           method: "DELETE",
           credentials: "include",
      })
-
           .then((response) => {
                if (response.ok) {
                     //Utiliza msj_modal para mostrar la eliminacion exitosa.
                     const msj_modal = document.getElementById("msj_modal");
-                    const delet_container = document.getElementById("delet_container");
+                    const delet_container =
+                         document.getElementById("delet_container");
                     msj_modal.style.display = "block";
                     const titulo = document.createElement("h2");
                     titulo.textContent = "MENSAJE ELIMINADO EXITOSAMENTE";
                     delet_container.appendChild(titulo);
-                    const btn_ok = document.createElement("button")
-                    btn_ok.textContent = "OK"
+                    const btn_ok = document.createElement("button");
+                    btn_ok.textContent = "OK";
                     btn_ok.addEventListener("click", (e) => {
                          e.preventDefault();
                          msj_modal.style.display = "none";
                          delet_container.innerHTML = "";
-                    })
+                    });
                     delet_container.appendChild(btn_ok);
-               
                } else {
-                    console.log("Error al eliminar el mensaje. Código de estado:", response.status);
+                    console.log(
+                         "Error al eliminar el mensaje. Código de estado:",
+                         response.status
+                    );
                }
           })
           .catch((error) => {
-               document.getElementById("message").innerHTML = "Ocurrió un error, profile";
+               document.getElementById("message").innerHTML =
+                    "Ocurrió un error, profile";
           });
 }
 //Fin delete msjs.
 
 //Modificar msjs
-function model_modificar_msj(id_message, message){
+function model_modificar_msj(id_message, message) {
      const msj_modal = document.getElementById("msj_modal");
      const delet_container = document.getElementById("delet_container");
      msj_modal.style.display = "block";
      const titulo = document.createElement("h2");
      titulo.textContent = "Modificar mensaje";
      const input_upmsj = document.createElement("input");
-     input_upmsj.value = message
-     const btn_ok = document.createElement("button")
-     btn_ok.textContent = "OK"
-     const btn_cancel = document.createElement("button")
-     btn_cancel.textContent = "CANCELAR"
+     input_upmsj.value = message;
+     const btn_ok = document.createElement("button");
+     btn_ok.textContent = "OK";
+     const btn_cancel = document.createElement("button");
+     btn_cancel.textContent = "CANCELAR";
 
-     delet_container.appendChild(titulo)
-     delet_container.appendChild(input_upmsj)
-     delet_container.appendChild(btn_ok)
-     delet_container.appendChild(btn_cancel)
+     delet_container.appendChild(titulo);
+     delet_container.appendChild(input_upmsj);
+     delet_container.appendChild(btn_ok);
+     delet_container.appendChild(btn_cancel);
 
      btn_ok.addEventListener("click", (e) => {
           e.preventDefault();
-          modificar_msj(id_message, input_upmsj.value)
+          modificar_msj(id_message, input_upmsj.value);
           msj_modal.style.display = "none";
           delet_container.innerHTML = "";
-     })
-     
+     });
+
      btn_cancel.addEventListener("click", () => {
           msj_modal.style.display = "none";
           delet_container.innerHTML = "";
-     })
+     });
 }
 
 function modificar_msj(id_message, message) {
      const data = {
           ["id_message"]: id_message,
-          ["message"]: message
+          ["message"]: message,
      };
      const url = `http://127.0.0.1:5000/messages/`;
      fetch(url, {
@@ -661,21 +688,25 @@ function modificar_msj(id_message, message) {
           .then((response) => {
                if (response.status === 200) {
                     const msj_modal = document.getElementById("msj_modal");
-                    const delet_container = document.getElementById("delet_container");
+                    const delet_container =
+                         document.getElementById("delet_container");
                     msj_modal.style.display = "block";
                     const titulo = document.createElement("h2");
                     titulo.textContent = "MENSAJE MODIFICADO EXITOSAMENTE";
                     delet_container.appendChild(titulo);
-                    const btn_ok = document.createElement("button")
-                    btn_ok.textContent = "OK"
+                    const btn_ok = document.createElement("button");
+                    btn_ok.textContent = "OK";
                     btn_ok.addEventListener("click", (e) => {
                          e.preventDefault();
                          msj_modal.style.display = "none";
                          delet_container.innerHTML = "";
-                    })
+                    });
                     delet_container.appendChild(btn_ok);
                } else {
-                    console.log("Error al eliminar el mensaje. Código de estado:", response.status);
+                    console.log(
+                         "Error al eliminar el mensaje. Código de estado:",
+                         response.status
+                    );
                }
           })
           .catch((error) => {

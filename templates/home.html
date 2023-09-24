@@ -8,6 +8,11 @@
     <title>Home</title>
 </head>
 <body>
+    <!-- <nav id="nav_bar">
+        <div id="nav_container">
+            <img src="../assets/inicio/1.png" alt="">
+        </div>
+    </nav> -->
     <div class="grid-container">
         <div class="grid-item1">
             <div id="servers_container">
@@ -15,15 +20,17 @@
                    
                 </div>
             </div>
-            <div id="container_busc_crear">
-                <div id="buscar_server">
-                    <img src="../assets/iconos/lupa.png" alt="" class="iconos_buscar_crear">
+            <div id="buscar_crear">
+                <div id="container_busc_crear">
+                    <div id="buscar_server">
+                        <img src="../assets/iconos/lupa.png" alt="" class="iconos_buscar_crear">
+                    </div>
+                    <div id="server">
+                        <img src="../assets/iconos/varita.png" alt="" class="iconos_buscar_crear">
+                    </div>
                 </div>
-                <div id="server">
-                    <img src="../assets/iconos/varita.png" alt="" class="iconos_buscar_crear">
-                </div>
+                <div>Buscar o Crear</div>
             </div>
-            <div>Buscar Crear</div>
             <div class="user_log">
                 <div id="user_session">
                     <img src="" alt="Image user" id="img_perfil">
@@ -34,7 +41,8 @@
             </div>
         </div>
 
-        <div class="grid-item2">
+        <div class="grid-item2" id="grid-item2">
+            <h2 id="name_server_channel"></h2>
             <div id="channels">
                 
             </div>
@@ -50,28 +58,26 @@
             </div>
             <div class="input">
                 <input type="text" class="input_msj" id="input_msj">
-                <button id="enviar_msj" type="button">Enviar mensaje</button>
+                <button id="enviar_msj" type="button">Enviar</button>
             </div>
         </div>        
     </div>
 
     <div id="modal_server">
-        <div id="modal_container">
-            <form id = "server_form">
-                <h1>Crear server</h1>
-                <label>Nombre del Server</label>
-                <input type="text" id ="name_server" required><br>
-                <textarea id="desc_server" cols="30" rows="10">Descripción</textarea><br>
-                <h1>Selecciona un Icono</h1>
-                <div id="icon-list">
-
-                </div>
-                <h2>Icono Seleccionado:</h2>
-                <div id="selected-icon">
-                </div>                
-                <button type="button" id="create_server">Crear</button>
-                <button type="button" id="cancel_crear_server">Cancelar</button>
-            </form>
+        <div id="modal_container">            
+                <!-- <h1>Crear Servidor</h1> -->
+                <label>Nombre del Servidor</label>
+                <input type="text" id ="name_server" required placeholder="Pon aquí el nombre"><br>
+                <label>Descripción</label>
+                <textarea id="desc_server" placeholder="Descripción del servidor"></textarea><br>
+                <h2>Icono Seleccionado</h2>
+                <div id="selected-icon"></div>
+                <h2>Selecciona un Icono</h2>
+                <div id="icon-list"></div>
+                <div id="btn_crea_cncl">
+                    <button type="button" id="create_server">Crear</button>
+                    <button type="button" id="cancel_crear_server">Cancelar</button>
+                </div>               
         </div>
     </div>
 
