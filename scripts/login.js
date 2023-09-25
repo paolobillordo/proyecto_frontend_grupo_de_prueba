@@ -63,6 +63,7 @@ function create() {
           last_name: document.getElementById("apellido").value,
           password: document.getElementById("password_r").value,
           birth_date: document.getElementById("date").value,
+          image : "../assets/avatares/1.svg", 
      };
      fetch("http://127.0.0.1:5000/users/", {
           method: "POST",
@@ -75,6 +76,7 @@ function create() {
           .then((response) => {
                if (response.status === 201) {
                     return response.json().then((data) => {
+                         console.log("USUARIO CREADO EXITOSAMENTE");
                          window.location.href = "login.html";
                     });
                } else {

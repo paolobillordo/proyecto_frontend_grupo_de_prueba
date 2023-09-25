@@ -473,6 +473,7 @@ function create_channel() {
           .then((response) => {
                if (response.status === 201) {
                     return response.json().then((data) => {
+                         console.log("Se cargaran los canales.")
                          get_channels(server_name);
                          //window.location.href = "home.html";
                     });
