@@ -1,43 +1,94 @@
 .classEditar img {
-    width: 20px; /* Ajusta el tamaño deseado */
-    height: 20px;
-  }
+     width: 20px; /* Ajusta el tamaño deseado */
+     height: 20px;
+}
 
 .divClassEdit {
-    display: flex;
-    align-items: center;
+     display: flex;
+     align-items: center;
 }
 .divClassEdit h2 {
-    padding-right: 25px;
+     padding-right: 25px;
 }
 
-.btnVolver{
-
+#btnVolver {
+     height: 35px;
+     width: 150px;
+     border-radius: 25px;
+     font-size: 1.5rem;
+     color: aliceblue;
+     background-color: #22336c;
 }
-.img_lapiz{
-    height: 30px;
+.img_lapiz {
+     height: 30px;
 }
-
-#profile_container, #edit_modal,#msj_modal{
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-
+#image_perfil {
+     height: 150px;
 }
 
-#profile_modal, #edit_container,#delet_container{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 80%;
+#profile_container,
+#edit_modal,
+#msj_modal {
+     display: none;
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background-color: rgba(0, 0, 0, 0.5);
+     z-index: 1;
+}
+
+#profile_modal,
+#edit_container,
+#delet_container {
+     display: flex;
+     flex-direction: column;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     background-color: #333333;
+     padding: 20px;
+     width: 500px;
+     height: 600px;
+     justify-content: center;
+     align-items: center;
+     border-radius: 25px;
+     box-shadow: 10px 10px 10px rgba(131, 1, 1, 0.5);
+}
+#edit_container,
+#delet_container {
+     height: 200px;
+}
+
+.input_edit_perfil {
+     text-align: center;
+     width: 400px;
+     height: 35px;
+     border-radius: 25px;
+     margin-top: 10px;
+     margin-bottom: 10px;
+     font-size: 1.5rem;
+}
+.btns_container_edit {
+     display: flex;
+}
+.btn_ok_edit {
+     height: 35px;
+     width: 150px;
+     border-radius: 25px;
+     font-size: 1.5rem;
+     color: aliceblue;
+     background-color: #22336c;
+     margin: 10px;
+}
+.btn_cancel_edit {
+     height: 35px;
+     width: 150px;
+     border-radius: 25px;
+     font-size: 1.5rem;
+     color: aliceblue;
+     background-color: rgb(87, 22, 22);
+     margin: 10px;
 }

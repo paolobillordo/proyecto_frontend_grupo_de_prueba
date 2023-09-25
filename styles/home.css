@@ -18,15 +18,15 @@ body {
 #nav_bar {
      display: flex;
      justify-content: center;
-     width: 100%;     
+     width: 100%;
      background-color: #7e0303;
 }
 #nav_container {
      height: 100px;
      width: 1280px;
 }
-#nav_container img{
-     height: 150px;     
+#nav_container img {
+     height: 150px;
 }
 
 .grid-container {
@@ -68,7 +68,6 @@ body {
 .server:hover {
      cursor: pointer;
      background-color: rgba(120, 3, 3, 0.409);
-     
 }
 #container_busc_crear {
      display: flex;
@@ -234,24 +233,24 @@ body {
 }
 #create_server {
      margin-right: 10px;
-    height: 35px;
-    width: 250px;
-    border-radius: 25px;
-    font-size: 1.5rem;
-    color: aliceblue;
-    background-color: #152f1a;
-    margin-top: 10px;
-    margin-bottom: 10px;
+     height: 35px;
+     width: 250px;
+     border-radius: 25px;
+     font-size: 1.5rem;
+     color: aliceblue;
+     background-color: #152f1a;
+     margin-top: 10px;
+     margin-bottom: 10px;
 }
 #cancel_crear_server {
      height: 35px;
-    width: 250px;
-    border-radius: 25px;
-    font-size: 1.5rem;
-    color: aliceblue;
-    background-color: rgba(131, 1, 1, 0.5);
-    margin-top: 10px;
-    margin-bottom: 10px;
+     width: 250px;
+     border-radius: 25px;
+     font-size: 1.5rem;
+     color: aliceblue;
+     background-color: rgba(131, 1, 1, 0.5);
+     margin-top: 10px;
+     margin-bottom: 10px;
 }
 #icon-list,
 #selected-icon {
@@ -271,24 +270,33 @@ body {
 }
 
 .modal_ok_container {
-     background-color: white;
-     width: 300px;
-     padding: 20px;
-     border-radius: 5px;
+     display: flex;
+     flex-direction: column;
      position: absolute;
      top: 50%;
      left: 50%;
      transform: translate(-50%, -50%);
+     background-color: #333333;
+     padding: 20px;
+     width: 350px;
+     height: 250px;
+     justify-content: center;
+     align-items: center;
+     border-radius: 25px;
+     box-shadow: 10px 10px 10px rgba(131, 1, 1, 0.5);
 }
 
 /* Estilos para el botón "OK" */
 .btn_ok {
-     background-color: #0074d9;
-     color: white;
-     border: none;
-     padding: 10px 20px;
-     border-radius: 5px;
-     cursor: pointer;
+     height: 35px;
+     width: 150px;
+     border-radius: 25px;
+     font-size: 1.5rem;
+     color: aliceblue;
+     background-color: #22336c;
+}
+#btn_no_ok {
+     background-color: rgb(87, 22, 22);
 }
 
 #servers_container {
@@ -307,15 +315,50 @@ body {
 }
 
 #modal_container_channel {
+     display: flex;
+     flex-direction: column;
      position: absolute;
      top: 50%;
      left: 50%;
      transform: translate(-50%, -50%);
-     background-color: white;
+     background-color: #333333;
      padding: 20px;
-     border: 1px solid #ccc;
-     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-     max-width: 80%;
+     width: 500px;
+     height: 300px;
+     justify-content: center;
+     align-items: center;
+     border-radius: 25px;
+     box-shadow: 10px 10px 10px rgba(131, 1, 1, 0.5);
+}
+#name_channel, #desc_channel {
+     text-align: center;
+     width: 400px;
+     height: 35px;
+     border-radius: 25px;
+     margin-top: 10px;
+     margin-bottom: 10px;
+     font-size: 1.5rem;
+}
+#desc_channel {
+     width: 500px;     
+}
+#create_channel {
+     height: 35px;
+     width: 150px;
+     border-radius: 25px;
+     font-size: 1.5rem;
+     color: aliceblue;
+     background-color: #22336c;
+     margin: 10px;
+}
+#cancel_channel {
+     height: 35px;
+     width: 150px;
+     border-radius: 25px;
+     font-size: 1.5rem;
+     color: aliceblue;
+     background-color: rgb(87, 22, 22);
+     margin: 10px;
 }
 
 #modal_buscar_server {
@@ -330,31 +373,74 @@ body {
 }
 
 #modal_container_buscar {
+     display: flex;
+     flex-direction: column;
      position: absolute;
      top: 50%;
      left: 50%;
      transform: translate(-50%, -50%);
-     background-color: white;
+     background-color: #333333;
      padding: 20px;
-     border: 1px solid #ccc;
      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-     max-width: 80%;
+     width: 1000px;
+     height: 650px;
+     justify-content: center;
+     align-items: center;
+     border-radius: 25px;
+     box-shadow: 10px 10px 10px rgba(131, 1, 1, 0.5);
 }
 
 #server-list {
      display: flex;
+     justify-content: center;
+     flex-wrap: wrap;
+     overflow-y: auto;
 }
 
 .server_select {
-     width: 125px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     border: 2px solid black;
+     width: 210px;
      height: auto;
      margin: 10px;
+     border-radius: 25px;
+     background-color: rgba(143, 93, 64, 0.5);
+     text-align: center;
+}
+#filter {
+     text-align: center;
+     width: 500px;
+     height: 35px;
+     border-radius: 25px;
+     margin-top: 10px;
+     margin-bottom: 10px;
+     font-size: 1.5rem;
+}
+#container_unir_cancel {
+     display: flex;
+}
+#unirse_server {
+     height: 35px;
+     width: 150px;
+     border-radius: 25px;
+     font-size: 1.5rem;
+     color: aliceblue;
+     background-color: #22336c;
+}
+#cancel_server {
+     height: 35px;
+     width: 150px;
+     border-radius: 25px;
+     font-size: 1.5rem;
+     color: aliceblue;
+     background-color: rgb(87, 22, 22);
 }
 
 .messages {
      display: flex;
      flex-direction: column;
-
      background-color: rgba(138, 104, 4, 0.28);
      border: 2px solid black;
      border-radius: 25px;
@@ -481,13 +567,11 @@ body {
 
 /* Estilo básico para el elemento que muestra el nombre del servidor */
 #server-name-tooltip {
-     position: absolute; 
-     background-color: rgba(29, 0, 0, 0.685); 
-     color: #ffffff; 
-     padding: 5px 10px; 
+     position: absolute;
+     background-color: rgba(29, 0, 0, 0.685);
+     color: #ffffff;
+     padding: 5px 10px;
      border-radius: 5px;
-     pointer-events: none; 
-     display: none; 
-   }
-   
- 
+     pointer-events: none;
+     display: none;
+}

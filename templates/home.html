@@ -83,33 +83,32 @@
 
     <div id="modal_ok" class="modal_ok">
         <div class="modal_ok_container">
-            <p id="mensajito"></p>
-            <p id="modal_message"></p>
-            <button id="btn_ok" class="btn_ok">OK</button>
-            <button id="btn_no_ok" class="btn_ok">NO</button>
+            <h2 id="mensajito"></h2>
+            <h2 id="modal_message"></h2>
+            <div>
+                <button id="btn_ok" class="btn_ok">OK</button>
+                <button id="btn_no_ok" class="btn_ok">NO</button>
+            </div>
         </div>
     </div>
 
     <div id="modal_channel">
-        <div id="modal_container_channel">
-            <form id = "channel_form">
-                <h1>Crear Canal</h1>
-                <label>Nombre del Canal</label>
-                <input type="text" id ="name_channel" required><br>
-                <label>Descripción</label><br>
-                <textarea id="desc_channel" cols="30" rows="10"></textarea><br> 
-                
-                <button type="button" id="create_channel">Crear</button>
-                <button type="button" id="cancel_channel">Cancelar</button>
-            </form>
+        <div id="modal_container_channel">            
+                <h1>Crear Canal</h1>                
+                <input type="text" id ="name_channel" required placeholder="Nombre del canal"><br>                
+                <textarea id="desc_channel" cols="30" rows="10" placeholder="Descripción"></textarea><br> 
+                <div id="container_btn_crear_canal">
+                    <button type="button" id="create_channel">Crear</button>
+                    <button type="button" id="cancel_channel">Cancelar</button>
+                </div>
         </div>
     </div>
 
 
     <div id="modal_buscar_server">
         <div id="modal_container_buscar">            
-                <h1>Buscar servidor</h1>
-                <label>Buscar</label>
+                <!-- <h1>Buscar servidor</h1> -->
+                
                 <input type="text" id="filter" placeholder="Filtrar por nombre"><br>
 
                 <h2>Selecciona un Servidor</h2>
@@ -118,11 +117,12 @@
                 </div>
                 <h2>Server Seleccionado</h2>
                 <div id="selected-server">
-
+                </div>
+                <div id="container_unir_cancel">
+                    <button type="button" id="unirse_server">Unirse</button>
+                    <button type="button" id="cancel_server">Cancelar</button>
                 </div>
 
-                <button type="button" id="unirse_server">Unirse</button>
-                <button type="button" id="cancel_server">Cancelar</button>
             
         </div>
     </div>
@@ -132,41 +132,32 @@
         <div id="profile_modal">
             <div id="profile_title">
                 <h1 id="my_profile">"Mi Perfil"</h1>
-            </div>
-    
+            </div>    
             <div>
-                <img src="../assets/icon_server/1.ico" alt="imagenUser">
+                <img src="../assets/avatares/25.svg" alt="imagenUser" id="image_perfil">
                 <img id="lapiz_ico" class="img_lapiz" src="../assets/lapiz.png" alt="img_lapiz" srcset="">
-            </div>
-    
-    
-    
+            </div>    
             <div class="divClassEdit">
                 <h2 id="nick_name">Nick Name:</h2>
                 <h2 id="nick"></h2><br>
                 <img id="lapiz_nick" class="img_lapiz" src="../assets/lapiz.png" alt="img_lapiz" srcset="">
-            </div>
-    
+            </div>    
             <div class="divClassEdit">            
                 <h2 id="first_name">Nombre:</h2>
                 <h2 id="name"></h2><br>
                 <img id="lapiz_name" class="img_lapiz" src="../assets/lapiz.png" alt="img_lapiz" srcset="">
-            </div>
-    
+            </div>    
             <div class="divClassEdit">
                 <h2 id="last_name">Apellido:</h2>
                 <h2 id="last"></h2><br>
                 <img id="lapiz_last" class="img_lapiz" src="../assets/lapiz.png" alt="img_lapiz" srcset="">
-            </div>
-    
+            </div>    
             <div class="divClassEdit">
                 <h2 id="email">Email:</h2>
                 <h2 id="email1"></h2><br>
                 <img id="lapiz_email" class="img_lapiz" src="../assets/lapiz.png" alt="img_lapiz" srcset="">
             </div>
-            <button type="button" id="btnVolver">
-                Volver
-              </button>
+            <button type="button" id="btnVolver">Volver</button>
         </div>
     </div>
 
@@ -183,11 +174,11 @@
             
         </div>
     </div>
+    <!-- para mostrar el nombre del servidor -->
+    <div id="server-name-tooltip" class="server-tooltip"></div>
 
     <script src="../scripts/home.js"></script>
     <script src="../scripts/profile.js"></script>
         
-    <!-- para mostrar el nombre del servidor -->
-    <div id="server-name-tooltip" class="server-tooltip"></div>
 </body>
 </html>

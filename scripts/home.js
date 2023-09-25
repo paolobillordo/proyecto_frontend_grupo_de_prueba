@@ -95,9 +95,6 @@ function get_servers() {
           });
 }
 
-
-
-
 function logout() {
      const url = "http://127.0.0.1:5000/users/logout";
 
@@ -143,12 +140,6 @@ cancel_crear_server.addEventListener("click", () => {
      sel_icon.textContent = "";
 });
 
-// window.addEventListener("click", (e) => {
-//      if (e.target === modal_server) {
-//           modal_server.style.display = "none";
-//      }
-// })
-
 const iconList = document.getElementById("icon-list");
 const iconDirectory = "../assets/icon_server/";
 const iconFiles = [
@@ -185,6 +176,7 @@ create_server.addEventListener("click", (e) => {
 });
 
 const mensajito = document.getElementById("mensajito");
+
 function create_ser() {
      const miImagen = document.getElementById("sel_icon");
      const data = {
@@ -208,6 +200,7 @@ function create_ser() {
                          const mensaje = inputValue.value;
                          mensajito.textContent = "Ha creado el servidor:";
                          modalMessage.textContent = mensaje;
+                         btnNo.style.display = "none"
                     });
                } else {
                     return response.json().then((data) => {
@@ -534,9 +527,10 @@ function get_all_servers() {
                     divExterior.classList.add(claseServers);
                     const imgInterior = document.createElement("img");
                     imgInterior.src = server.icono;
+                    imgInterior.style.height = "100px"
                     const h2Interior = document.createElement("h2");
                     h2Interior.textContent = server.name_server;
-                    const h3Interior = document.createElement("h3");
+                    const h3Interior = document.createElement("p");
                     h3Interior.textContent = server.description;
 
                     divExterior.appendChild(h2Interior);
