@@ -59,15 +59,21 @@ modifica_nick.addEventListener("click", () => {
     const titulo = document.createElement("h2")
     titulo.textContent = "Modificar NickName:"
     const input_nick = document.createElement("input")
+    input_nick.classList.add("input_edit_perfil")
     input_nick.placeholder = usuario_data.nick_name
+    const divBtns = document.createElement("div")
+    divBtns.classList.add("btns_container_edit")
     const btn_ok = document.createElement("button")
     btn_ok.textContent = "Ok"
+    btn_ok.classList.add("btn_ok_edit")
     const btn_cancel = document.createElement("button")
     btn_cancel.textContent = "Cancelar"
+    btn_cancel.classList.add("btn_cancel_edit")
     contenedor.appendChild(titulo)
     contenedor.appendChild(input_nick)
-    contenedor.appendChild(btn_ok)
-    contenedor.appendChild(btn_cancel)
+    divBtns.appendChild(btn_ok)
+    divBtns.appendChild(btn_cancel)
+    contenedor.appendChild(divBtns)
     btn_cancel.addEventListener("click", () => {
         edit_modal.style.display = "none";
         contenedor.textContent = ""
@@ -88,14 +94,20 @@ modifica_name.addEventListener("click", () => {
     titulo.textContent = "Modificar Nombre:"
     const input_name = document.createElement("input")
     input_name.placeholder = usuario_data.first_name
+    input_name.classList.add("input_edit_perfil")
     const btn_ok = document.createElement("button")
+    const divBtns = document.createElement("div")
+    divBtns.classList.add("btns_container_edit")
     btn_ok.textContent = "Ok"
+    btn_ok.classList.add("btn_ok_edit")
     const btn_cancel = document.createElement("button")
     btn_cancel.textContent = "Cancelar"
+    btn_cancel.classList.add("btn_cancel_edit")
     contenedor.appendChild(titulo)
     contenedor.appendChild(input_name)
-    contenedor.appendChild(btn_ok)
-    contenedor.appendChild(btn_cancel)
+    divBtns.appendChild(btn_ok)
+    divBtns.appendChild(btn_cancel)
+    contenedor.appendChild(divBtns)
     btn_cancel.addEventListener("click", () => {
         edit_modal.style.display = "none";
         contenedor.textContent = ""
@@ -114,14 +126,20 @@ modifica_last.addEventListener("click", () => {
     titulo.textContent = "Modificar Apellido:"
     const input_Apellido = document.createElement("input")
     input_Apellido.placeholder = usuario_data.last_name
+    input_Apellido.classList.add("input_edit_perfil")
+    const divBtns = document.createElement("div")
+    divBtns.classList.add("btns_container_edit")
     const btn_ok = document.createElement("button")
     btn_ok.textContent = "Ok"
+    btn_ok.classList.add("btn_ok_edit")
     const btn_cancel = document.createElement("button")
     btn_cancel.textContent = "Cancelar"
+    btn_cancel.classList.add("btn_cancel_edit")
     contenedor.appendChild(titulo)
     contenedor.appendChild(input_Apellido)
-    contenedor.appendChild(btn_ok)
-    contenedor.appendChild(btn_cancel)
+    divBtns.appendChild(btn_ok)
+    divBtns.appendChild(btn_cancel)
+    contenedor.appendChild(divBtns)
     btn_cancel.addEventListener("click", () => {
         edit_modal.style.display = "none";
         contenedor.textContent = ""
@@ -139,14 +157,20 @@ modifica_email.addEventListener("click", () => {
     titulo.textContent = "Modificar Email:"
     const input_email = document.createElement("input")
     input_email.placeholder = usuario_data.email
+    input_email.classList.add("input_edit_perfil")
+    const divBtns = document.createElement("div")
+    divBtns.classList.add("btns_container_edit")
     const btn_ok = document.createElement("button")
     btn_ok.textContent = "Ok"
+    btn_ok.classList.add("btn_ok_edit")
     const btn_cancel = document.createElement("button")
     btn_cancel.textContent = "Cancelar"
+    btn_cancel.classList.add("btn_cancel_edit")
     contenedor.appendChild(titulo)
     contenedor.appendChild(input_email)
-    contenedor.appendChild(btn_ok)
-    contenedor.appendChild(btn_cancel)
+    divBtns.appendChild(btn_ok)
+    divBtns.appendChild(btn_cancel)
+    contenedor.appendChild(divBtns)
     btn_cancel.addEventListener("click", () => {
         edit_modal.style.display = "none";
         contenedor.textContent = ""
