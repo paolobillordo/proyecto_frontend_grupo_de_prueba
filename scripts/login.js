@@ -40,6 +40,7 @@ const registerForm = document.getElementById("register");
 const modal_register = document.getElementById("modal_register");
 const modal_container = document.getElementById("modal_container");
 const create_user = document.getElementById("create_user");
+const cancel_create_user = document.getElementById("cancel_create_user")
 
 registerForm.addEventListener("click", () => {
      modal_register.style.display = "block";
@@ -51,9 +52,14 @@ window.addEventListener("click", (e) => {
      }
 });
 
+cancel_create_user.addEventListener("click", () => {
+     modal_register.style.display = "none"
+}
+)
+
 // registra nuevo usuario
 create_user.addEventListener("click", (e) => {
-     e.preventDefault();
+     //e.preventDefault();
      create();
 });
 function create() {
@@ -104,7 +110,7 @@ function create() {
           .catch((error) => {
                document.getElementById("message").innerHTML =
                     "Ocurrió un error.";
-               window.location.href = "login.html";
+               //window.location.href = "login.html";
           });
 }
 
