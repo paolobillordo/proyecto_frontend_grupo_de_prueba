@@ -37,6 +37,54 @@ function get_session() {
           }
      });
 }
+//modifique desde aca 
+// function get_servers() {
+//      const url = "http://127.0.0.1:5000/servers/user";
+//      fetch(url, {
+//           method: "GET",
+//           credentials: "include",
+//      })
+//           .then((response) => response.json())
+//           .then((data) => {
+//                const contenedor = document.getElementById("servers");
+//                const claseServers = "server";
+//                data.forEach((server) => {
+//                     const divExterior = document.createElement("div");
+//                     divExterior.classList.add(claseServers);
+//                     const imgInterior = document.createElement("img");
+//                     imgInterior.src = server.icono;
+//                     imgInterior.classList.add("img_server");
+//                     const buttonImg = document.createElement("div");
+//                     buttonImg.classList.add("button_img");
+//                     buttonImg.type = "button";
+//                     buttonImg.id = server.name_server;
+//                     // const h2Interior = document.createElement("span");
+//                     // h2Interior.classList.add("name_list_server")
+//                     // h2Interior.textContent = server.name_server;
+//                     buttonImg.appendChild(imgInterior);
+//                     // buttonImg.appendChild(h2Interior);
+//                     divExterior.appendChild(buttonImg);
+//                     contenedor.appendChild(divExterior);
+//                     button_channel = document.getElementById(
+//                          server.name_server
+//                     );
+//                     button_channel.addEventListener("click", () => {
+//                          const contenedor_msjs =
+//                               document.getElementById("msj_canal");
+//                          contenedor_msjs.innerHTML = "";
+//                          get_channels(server.name_server);
+//                          clearInterval(intervalID);
+//                          server_id = server.id_server;
+//                          server_name = server.name_server;
+//                          divExterior.style.backgroundColor = "black";
+//                     });
+//                });
+//           })
+//           .catch((error) => {
+//                document.getElementById("message").innerHTML =
+//                     "Ocurrió un error.";
+//           });
+// }
 
 function get_servers() {
      const url = "http://127.0.0.1:5000/servers/user";
@@ -48,21 +96,30 @@ function get_servers() {
           .then((data) => {
                const contenedor = document.getElementById("servers");
                const claseServers = "server";
+               const serverNameTooltip = document.getElementById("server-name-tooltip");
                data.forEach((server) => {
                     const divExterior = document.createElement("div");
                     divExterior.classList.add(claseServers);
                     const imgInterior = document.createElement("img");
                     imgInterior.src = server.icono;
                     imgInterior.classList.add("img_server");
+                    imgInterior.addEventListener("mouseover", () => {
+                         // Mostrar el nombre del servidor al pasar el mouse
+                         serverNameTooltip.textContent = server.name_server;
+                         serverNameTooltip.style.display = "block";
+                         serverNameTooltip.style.left = `${event.clientX + 10}px`; // Posición horizontal al lado del mouse
+                         serverNameTooltip.style.top = `${event.clientY + 10}px`; // Posición vertical al lado del mouse
+                    });
+                    
+                    imgInterior.addEventListener("mouseout", () => {
+                         // Ocultar el nombre del servidor al quitar el mouse
+                         serverNameTooltip.style.display = "none";
+                    });
                     const buttonImg = document.createElement("div");
                     buttonImg.classList.add("button_img");
                     buttonImg.type = "button";
                     buttonImg.id = server.name_server;
-                    // const h2Interior = document.createElement("span");
-                    // h2Interior.classList.add("name_list_server")
-                    // h2Interior.textContent = server.name_server;
                     buttonImg.appendChild(imgInterior);
-                    // buttonImg.appendChild(h2Interior);
                     divExterior.appendChild(buttonImg);
                     contenedor.appendChild(divExterior);
                     button_channel = document.getElementById(
@@ -85,6 +142,9 @@ function get_servers() {
                     "Ocurrió un error.";
           });
 }
+
+
+//hasta aca
 
 function logout() {
      const url = "http://127.0.0.1:5000/users/logout";
@@ -425,7 +485,7 @@ function create_msj(mensaje) {
           });
 }
 
-//desde aca
+//desde aca al hacer enter envia el msj
 
 inputMsj.addEventListener("keydown", (event) => {
      if (event.key === "Enter") {

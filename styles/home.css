@@ -67,7 +67,8 @@ body {
 }
 .server:hover {
      cursor: pointer;
-     background-color: black;
+     background-color: rgba(120, 3, 3, 0.409);
+     
 }
 #container_busc_crear {
      display: flex;
@@ -477,3 +478,16 @@ body {
      align-items: center;
      background-color: rgba(120, 3, 3, 0.409);
 }
+
+/* Estilo básico para el elemento que muestra el nombre del servidor */
+#server-name-tooltip {
+     position: absolute; 
+     background-color: rgba(29, 0, 0, 0.685); 
+     color: #ffffff; 
+     padding: 5px 10px; 
+     border-radius: 5px;
+     pointer-events: none; 
+     display: none; 
+   }
+   
+ 

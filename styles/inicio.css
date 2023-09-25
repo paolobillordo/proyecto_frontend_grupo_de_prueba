@@ -13,13 +13,32 @@ body {
     justify-content: center;
 }
 .content {
-    text-align: center;
+    text-align:center;
     color: #fff;
 }
+
+
 h1 {
     font-size: 36px;
 }
 
 img {
     height: 500px;
+    position:absolute;
+    animation: borderAnimation 3s infinite;
+}
+
+@keyframes borderAnimation {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+    }
 }
