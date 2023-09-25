@@ -52,7 +52,8 @@ window.addEventListener("click", (e) => {
 });
 
 // registra nuevo usuario
-create_user.addEventListener("click", () => {
+create_user.addEventListener("click", (e) => {
+     e.preventDefault();
      create();
 });
 function create() {
@@ -75,16 +76,29 @@ function create() {
      })
           .then((response) => {
                if (response.status === 201) {
-                    return response.json().then((data) => {
-                         console.log("USUARIO CREADO EXITOSAMENTE");
+                    modal_register.style.display = "none";
+                    console.log("USUARIO CREADO EXITOSAMENTE");
+                    const reg_ok_modal = document.getElementById("reg_ok_modal");
+                    const reg_ok_container = document.getElementById("reg_ok_container");
+                    reg_ok_modal.style.display = "block";
+                    const titulo = document.createElement("h2");
+                    titulo.textContent = "USUARIO CREADO EXITOSAMENTE";
+                    reg_ok_container.appendChild(titulo);
+                    const btn_ok = document.createElement("button");
+                    btn_ok.textContent = "OK";
+                    btn_ok.addEventListener("click", (e) => {
+                         e.preventDefault();
+                         reg_ok_modal.style.display = "none";
+                         reg_ok_container.innerHTML = "";
                          window.location.href = "login.html";
                     });
+                    reg_ok_container.appendChild(btn_ok);
                } else {
-                    return response.json().then((data) => {
-                         document.getElementById("message").innerHTML =
-                              data.message;
-                         window.location.href = "login.html";
-                    });
+                    // return response.json().then((data) => {
+                    //      document.getElementById("message").innerHTML =
+                    //           data.message;
+                    //      window.location.href = "login.html";
+                    //});
                }
           })
           .catch((error) => {
