@@ -77,6 +77,7 @@ function get_servers() {
                     button_channel = document.getElementById(
                          server.name_server
                     );
+                   
                     button_channel.addEventListener("click", () => {
                          const contenedor_msjs =
                               document.getElementById("msj_canal");
@@ -85,9 +86,17 @@ function get_servers() {
                          clearInterval(intervalID);
                          server_id = server.id_server;
                          server_name = server.name_server;
-                         divExterior.style.backgroundColor = "black";
+                         
+                         // Cambiar el estilo del servidor seleccionado
+                         const serverButtons = document.querySelectorAll(".server");
+                         serverButtons.forEach((btn) => {
+                           btn.style.backgroundColor = ""; // Reestablecer el estilo de fondo de todos los servidores
+                         });              
+                         divExterior.style.backgroundColor = "rgba(29, 0, 0, 0.9)";   
                     });
                });
+              
+               
           })
           .catch((error) => {
                document.getElementById("message").innerHTML =
@@ -303,10 +312,18 @@ function get_channels(name_server) {
                     channel_msj.addEventListener("click", () => {
                          get_msjs_10s(channel.id_channel);
                          channel_id = channel.id_channel;
-                         h2Interior.style.color = "blue";
-                    });
-               });
-          })
+
+                         // Cambiar el estilo del canal seleccionado
+                         const channelButtons = document.querySelectorAll(".channels");
+
+                         channelButtons.forEach((btn) => {
+                              btn.style.color = ""; // Reestablecer el estilo de fondo de todos los canales
+                         });
+
+                         divExterior.style.color = "rgb(107, 2, 2)"; // Establecer el estilo detexto del canal seleccionado
+                     });
+                });
+           })
           .catch((error) => {
                document.getElementById("message").innerHTML =
                     "Ocurrió un error.";
@@ -387,11 +404,14 @@ function get_msjs(id_channel) {
                     }
                     contenedor.appendChild(divExterior);
                });
+               // Llama a la función para desplazar la vista hacia abajo
+               scrollDown();
           })
           .catch((error) => {
                document.getElementById("message").innerHTML =
                     "Ocurrió un error.";
           });
+     
 }
 
 const inputMsj = document.getElementById("input_msj");
@@ -728,3 +748,9 @@ function modificar_msj(id_message, message) {
           });
 }
 //Fin modificar msjs
+
+function scrollDown() {
+     const contenedor_msjs = document.getElementById("msj_canal");
+     contenedor_msjs.scrollTop = contenedor_msjs.scrollHeight;
+ }
+ 

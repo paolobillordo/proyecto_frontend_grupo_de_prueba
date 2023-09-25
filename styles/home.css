@@ -55,6 +55,7 @@ body {
      justify-content: center;
      align-items: center;
 }
+
 .server {
      width: 200px;
      padding: 5px;
@@ -65,11 +66,14 @@ body {
      margin-top: 5px;
      margin-bottom: 5px;
 }
+
 .server:hover {
      cursor: pointer;
      background-color: rgba(120, 3, 3, 0.409);
      
 }
+
+
 #container_busc_crear {
      display: flex;
 }
@@ -83,6 +87,7 @@ body {
      border: 5px solid rgba(4, 7, 167, 0.5);
      border-radius: 25px;
 }
+
 #buscar_server:hover,
 #server:hover {
      cursor: pointer;
@@ -114,7 +119,7 @@ body {
      text-align: center;
 }
 .channels:hover {
-     color: blue;
+     color: rgb(107, 2, 2);
      cursor: pointer;
 }
 
@@ -482,12 +487,10 @@ body {
 /* Estilo básico para el elemento que muestra el nombre del servidor */
 #server-name-tooltip {
      position: absolute; 
-     background-color: rgba(29, 0, 0, 0.685); 
+     background-color: rgba(29, 0, 0, 0.671); 
      color: #ffffff; 
      padding: 5px 10px; 
      border-radius: 5px;
      pointer-events: none; 
      display: none; 
-   }
-   
- 
+}
