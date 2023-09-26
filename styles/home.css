@@ -121,7 +121,13 @@ body {
      color: rgb(107, 2, 2);
      cursor: pointer;
 }
-
+#crear_canal_container {
+     display: none;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+     margin-top: auto;
+}
 #crear_canal {
      display: flex;
      justify-content: center;
@@ -143,7 +149,7 @@ body {
 }
 
 .grid-item3 {
-     display: flex;
+     display: none;
      flex-direction: column;
      height: 100vh;
      justify-content: center;
@@ -172,6 +178,15 @@ body {
 .input {
      margin-top: auto;
      margin-bottom: 20px;
+}
+#input_edit_msj {
+     text-align: center;
+     width: 500px;
+     height: 35px;
+     border-radius: 25px;
+     margin-top: 10px;
+     margin-bottom: 10px;
+     font-size: 1.5rem;
 }
 
 .input_msj {
@@ -204,7 +219,7 @@ body {
      background-color: #333333;
      padding: 20px;
      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-     width: 1000px;
+     width: 700px;
      height: 650px;
      justify-content: center;
      align-items: center;
@@ -219,8 +234,7 @@ body {
      width: 600px;
      height: 35px;
      border-radius: 25px;
-     margin-top: 10px;
-     margin-bottom: 10px;
+     margin-top: 10px;     
      font-size: 1.5rem;
 }
 #name_server {
@@ -235,6 +249,7 @@ body {
 #btn_crea_cncl {
      display: flex;
      margin: 10px;
+     margin-top: auto;
 }
 #create_server {
      margin-right: 10px;
@@ -257,11 +272,28 @@ body {
      margin-top: 10px;
      margin-bottom: 10px;
 }
-#icon-list,
 #selected-icon {
      display: flex;
      justify-content: center;
      align-items: center;
+     background-color: rgb(52, 85, 111);
+     width: 100px;
+     height: 150px;
+     border-radius: 25px;
+}
+#icon-list {
+     width: 600px;
+     height: 200px;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     align-items: center;
+     overflow-y: auto;
+     background-color: rgb(111, 68, 52);
+     border-radius: 25px;
+}
+#icon-list img {
+     margin: 10px;
 }
 
 .modal_ok {
@@ -419,8 +451,7 @@ body {
      width: 500px;
      height: 35px;
      border-radius: 25px;
-     margin-top: 10px;
-     margin-bottom: 10px;
+     margin-top: 10px;     
      font-size: 1.5rem;
 }
 #container_unir_cancel {

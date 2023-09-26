@@ -28,8 +28,7 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 25px;
-    box-shadow: 10px 10px 10px rgba(131, 1, 1, 0.5);
-    
+    box-shadow: 10px 10px 10px rgba(131, 1, 1, 0.5);    
     z-index: 2; 
     
 }
@@ -42,13 +41,11 @@ body {
       /* max-width: 400px;
       max-height: 470px; */
       background: #040717;
-      border-radius: 30px 5px;
+      border-radius: 25px;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      margin-top: 35px;
-      
+      overflow: hidden;            
       z-index: 1; 
   }
   #login_form_container::before{
@@ -160,10 +157,18 @@ body {
     transform: translate(-50%, -50%);
     background-color: #333333;
     padding: 20px;
-    width: 1500px;
-    height: 100px;
+    width: 400px;
+    height: 150px;
     justify-content: center;
     align-items: center;
     border-radius: 25px;
     box-shadow: 10px 10px 10px rgba(131, 1, 1, 0.5);
+}
+#boton_error {
+    height: 35px;
+    width: 150px;
+    border-radius: 25px;
+    font-size: 1.5rem;
+    color: aliceblue;
+    background-color: #22336c;
 }

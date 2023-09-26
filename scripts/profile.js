@@ -56,18 +56,22 @@ const selected_img_conteiner = document.getElementById("selected_img_conteiner")
 
 
 modifica_imagen.addEventListener("click", () => {
+    const divImgSelec = document.createElement("div")
+    divImgSelec.id = "avatares_list"
     edit_modal_img.style.display = "block"
     const iconList = document.getElementById("edit_img_container");
     iconList.innerHTML= ""
     const titulo = document.createElement("h2")
-    titulo.textContent = "Modificar Imagen:"
+    titulo.textContent = "Selecciona un Avatar"
     iconList.appendChild(titulo)
     
     const btn_volv = document.createElement("button")
     btn_volv.textContent = "Volver"
+    btn_volv.id = "btn_volver_edit_img"
     btn_volv.addEventListener( "click", () => {
         edit_modal_img.style.display = "none"
     })
+    iconList.appendChild(divImgSelec)
     iconList.appendChild(btn_volv)
     
     const iconDirectory = "../assets/avatares/";
@@ -84,19 +88,24 @@ modifica_imagen.addEventListener("click", () => {
             selectedIcon.innerHTML = "";
 
             const titulo = document.createElement("h2")
-            titulo.textContent = "¿Modificar Imagen?"
+            titulo.textContent = "¿Desea usar este Avatar?"
             selectedIcon.appendChild(titulo)
             
             const imgClone = img.cloneNode(true);
             imgClone.id = "sel_icon";
             selectedIcon.appendChild(imgClone);
+            const divBtnSelecImg = document.createElement("div")
+            divBtnSelecImg.id = "div_btns_img_selec"
 
             const btn_ok = document.createElement("button")
             btn_ok.textContent = "Ok"
+            btn_ok.classList.add("btn_ok_edit")
             const btn_cancel = document.createElement("button")
             btn_cancel.textContent = "Cancelar"
-            selectedIcon.appendChild(btn_ok)
-            selectedIcon.appendChild(btn_cancel)
+            btn_cancel.classList.add("btn_cancel_edit")
+            divBtnSelecImg.appendChild(btn_ok)
+            divBtnSelecImg.appendChild(btn_cancel)
+            selectedIcon.appendChild(divBtnSelecImg)
 
             btn_cancel.addEventListener("click", () => {
                 selected_img_conteiner.style.display = "none";
@@ -110,7 +119,7 @@ modifica_imagen.addEventListener("click", () => {
                 edit_modal_img.style.display = "none"                
             })
         });
-        iconList.appendChild(img);
+        divImgSelec.appendChild(img);
     });
     
 })

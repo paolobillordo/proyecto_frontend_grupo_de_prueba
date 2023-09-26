@@ -41,7 +41,9 @@
 
 #profile_modal,
 #edit_container,
-#delet_container {
+#delet_container,
+#edit_img_container,
+#selected_img {
      display: flex;
      flex-direction: column;
      position: absolute;
@@ -92,17 +94,7 @@
      background-color: rgb(87, 22, 22);
      margin: 10px;
 }
-#profile_modal, #edit_container,#delet_container{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 80%;
-}
+
 /* moda cambiar imagen de perfil */
 #edit_modal_img,#selected_img_conteiner{
     display: none;
@@ -115,15 +107,31 @@
     z-index: 1;
 
 }
-
-#edit_img_container,#selected_img{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 80%;
+#avatares_list {
+     width: 450px;
+     height: 400px;
+     overflow-y: auto;
+     margin-top: 25px;
+     margin-bottom: 25px;
+     background-color: rgb(130, 64, 64);
+     border-radius: 25px;
+}
+#avatares_list img {
+     margin: 10px;
+}
+#btn_volver_edit_img {
+     height: 35px;
+     width: 150px;
+     border-radius: 25px;
+     font-size: 1.5rem;
+     color: aliceblue;
+     background-color: rgb(87, 22, 22);
+     margin: 10px;
+}
+#selected_img {
+     width: 350px;
+     height: 250px;
+}
+#div_btns_img_selec {
+     margin-top: 25px;
 }

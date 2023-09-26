@@ -48,7 +48,9 @@ function get_servers() {
           .then((data) => {
                const contenedor = document.getElementById("servers");
                const claseServers = "server";
-               const serverNameTooltip = document.getElementById("server-name-tooltip");
+               const serverNameTooltip = document.getElementById(
+                    "server-name-tooltip"
+               );
                data.forEach((server) => {
                     const divExterior = document.createElement("div");
                     divExterior.classList.add(claseServers);
@@ -59,10 +61,14 @@ function get_servers() {
                          // Mostrar el nombre del servidor al pasar el mouse
                          serverNameTooltip.textContent = server.name_server;
                          serverNameTooltip.style.display = "block";
-                         serverNameTooltip.style.left = `${event.clientX + 10}px`; 
-                         serverNameTooltip.style.top = `${event.clientY + 10}px`; 
+                         serverNameTooltip.style.left = `${
+                              event.clientX + 10
+                         }px`;
+                         serverNameTooltip.style.top = `${
+                              event.clientY + 10
+                         }px`;
                     });
-                    
+
                     imgInterior.addEventListener("mouseout", () => {
                          // Ocultar el nombre del servidor al quitar el mouse
                          serverNameTooltip.style.display = "none";
@@ -77,8 +83,12 @@ function get_servers() {
                     button_channel = document.getElementById(
                          server.name_server
                     );
-                   
+
                     button_channel.addEventListener("click", () => {
+                         const creaCanal = document.getElementById("crear_canal_container")
+                         creaCanal.style.display = "flex"
+                         const grid3 = document.getElementById("grid-item3")
+                         grid3.style.display = "none"                         
                          const contenedor_msjs =
                               document.getElementById("msj_canal");
                          contenedor_msjs.innerHTML = "";
@@ -86,17 +96,17 @@ function get_servers() {
                          clearInterval(intervalID);
                          server_id = server.id_server;
                          server_name = server.name_server;
-                         
+
                          // Cambiar el estilo del servidor seleccionado
-                         const serverButtons = document.querySelectorAll(".server");
+                         const serverButtons =
+                              document.querySelectorAll(".server");
                          serverButtons.forEach((btn) => {
-                           btn.style.backgroundColor = ""; // Reestablecer el estilo de fondo de todos los servidores
-                         });              
-                         divExterior.style.backgroundColor = "rgba(29, 0, 0, 0.9)";   
+                              btn.style.backgroundColor = ""; // Reestablecer el estilo de fondo de todos los servidores
+                         });
+                         divExterior.style.backgroundColor =
+                              "rgba(29, 0, 0, 0.9)";
                     });
                });
-              
-               
           })
           .catch((error) => {
                document.getElementById("message").innerHTML =
@@ -168,7 +178,7 @@ iconFiles.forEach((iconFile) => {
      const img = document.createElement("img");
      img.src = iconDirectory + iconFile;
      img.alt = iconFile;
-     img.style.height = "80px"
+     img.style.height = "80px";
      img.addEventListener("click", () => {
           const selectedIcon = document.getElementById("selected-icon");
           selectedIcon.innerHTML = "";
@@ -209,7 +219,7 @@ function create_ser() {
                          const mensaje = inputValue.value;
                          mensajito.textContent = "Ha creado el servidor:";
                          modalMessage.textContent = mensaje;
-                         btnNo.style.display = "none"
+                         btnNo.style.display = "none";
                     });
                } else {
                     return response.json().then((data) => {
@@ -303,20 +313,23 @@ function get_channels(name_server) {
                     contenedor.appendChild(divExterior);
                     channel_msj = document.getElementById(channel.name_channel);
                     channel_msj.addEventListener("click", () => {
+                         const grid3 = document.getElementById("grid-item3")
+                         grid3.style.display = "flex"
                          get_msjs_10s(channel.id_channel);
                          channel_id = channel.id_channel;
 
                          // Cambiar el estilo del canal seleccionado
-                         const channelButtons = document.querySelectorAll(".channels");
+                         const channelButtons =
+                              document.querySelectorAll(".channels");
 
                          channelButtons.forEach((btn) => {
                               btn.style.color = ""; // Reestablecer el estilo de fondo de todos los canales
                          });
 
                          divExterior.style.color = "rgb(107, 2, 2)"; // Establecer el estilo detexto del canal seleccionado
-                     });
-                });
-           })
+                    });
+               });
+          })
           .catch((error) => {
                document.getElementById("message").innerHTML =
                     "Ocurrió un error.";
@@ -392,8 +405,8 @@ function get_msjs(id_channel) {
                          const divIcons = document.createElement("div");
                          divIcons.classList.add("div_icons");
                          divIcons.appendChild(imgUpdate);
-                         divIcons.appendChild(imgDelete)
-                         divExterior.appendChild(divIcons);                         
+                         divIcons.appendChild(imgDelete);
+                         divExterior.appendChild(divIcons);
                     }
                     contenedor.appendChild(divExterior);
                });
@@ -404,7 +417,6 @@ function get_msjs(id_channel) {
                document.getElementById("message").innerHTML =
                     "Ocurrió un error.";
           });
-     
 }
 
 const inputMsj = document.getElementById("input_msj");
@@ -412,7 +424,7 @@ const enviarMsj = document.getElementById("enviar_msj");
 
 enviarMsj.addEventListener("click", () => {
      create_msj(inputMsj.value);
-     inputMsj.value = ''
+     inputMsj.value = "";
 });
 
 function create_msj(mensaje) {
@@ -456,7 +468,7 @@ inputMsj.addEventListener("keydown", (event) => {
      if (event.key === "Enter") {
           event.preventDefault();
           create_msj(inputMsj.value);
-          inputMsj.value = ''
+          inputMsj.value = "";
      }
 });
 
@@ -498,7 +510,7 @@ function create_channel() {
           .then((response) => {
                if (response.status === 201) {
                     return response.json().then((data) => {
-                         console.log("Se cargaran los canales.")
+                         console.log("Se cargaran los canales.");
                          get_channels(server_name);
                          //window.location.href = "home.html";
                     });
@@ -547,7 +559,7 @@ function get_all_servers() {
                     divExterior.classList.add(claseServers);
                     const imgInterior = document.createElement("img");
                     imgInterior.src = server.icono;
-                    imgInterior.style.height = "100px"
+                    imgInterior.style.height = "100px";
                     const h2Interior = document.createElement("h2");
                     h2Interior.textContent = server.name_server;
                     const h3Interior = document.createElement("p");
@@ -603,17 +615,21 @@ function model_eliminar_msj(id_message) {
      //crea el model para preguntar si se elimina el msj
      const msj_modal = document.getElementById("msj_modal");
      const delet_container = document.getElementById("delet_container");
+     const divBtnsEdit = document.createElement("div");
      msj_modal.style.display = "block";
      const titulo = document.createElement("h2");
-     titulo.textContent = "ELIMINAR MSJ?";
+     titulo.textContent = "ELIMINAR MENSAJE?";
      const btn_ok = document.createElement("button");
      btn_ok.textContent = "SI";
+     btn_ok.classList.add("btn_ok_edit");
      const btn_cancel = document.createElement("button");
      btn_cancel.textContent = "NO";
+     btn_cancel.classList.add("btn_cancel_edit");
 
      delet_container.appendChild(titulo);
-     delet_container.appendChild(btn_ok);
-     delet_container.appendChild(btn_cancel);
+     divBtnsEdit.appendChild(btn_ok);
+     divBtnsEdit.appendChild(btn_cancel);
+     delet_container.appendChild(divBtnsEdit);
 
      btn_cancel.addEventListener("click", () => {
           msj_modal.style.display = "none";
@@ -646,6 +662,7 @@ function delete_msj(id_message) {
                     delet_container.appendChild(titulo);
                     const btn_ok = document.createElement("button");
                     btn_ok.textContent = "OK";
+                    btn_ok.classList.add("btn_ok_edit");
                     btn_ok.addEventListener("click", (e) => {
                          e.preventDefault();
                          msj_modal.style.display = "none";
@@ -670,20 +687,25 @@ function delete_msj(id_message) {
 function model_modificar_msj(id_message, message) {
      const msj_modal = document.getElementById("msj_modal");
      const delet_container = document.getElementById("delet_container");
+     const divBtnsEdit = document.createElement("div");
      msj_modal.style.display = "block";
      const titulo = document.createElement("h2");
      titulo.textContent = "Modificar mensaje";
      const input_upmsj = document.createElement("input");
      input_upmsj.value = message;
+     input_upmsj.id = "input_edit_msj";
      const btn_ok = document.createElement("button");
      btn_ok.textContent = "OK";
+     btn_ok.classList.add("btn_ok_edit");
      const btn_cancel = document.createElement("button");
      btn_cancel.textContent = "CANCELAR";
+     btn_cancel.classList.add("btn_cancel_edit");
 
      delet_container.appendChild(titulo);
      delet_container.appendChild(input_upmsj);
-     delet_container.appendChild(btn_ok);
-     delet_container.appendChild(btn_cancel);
+     divBtnsEdit.appendChild(btn_ok);
+     divBtnsEdit.appendChild(btn_cancel);
+     delet_container.appendChild(divBtnsEdit);
 
      btn_ok.addEventListener("click", (e) => {
           e.preventDefault();
@@ -723,6 +745,7 @@ function modificar_msj(id_message, message) {
                     delet_container.appendChild(titulo);
                     const btn_ok = document.createElement("button");
                     btn_ok.textContent = "OK";
+                    btn_ok.classList.add("btn_ok_edit");
                     btn_ok.addEventListener("click", (e) => {
                          e.preventDefault();
                          msj_modal.style.display = "none";
@@ -746,5 +769,4 @@ function modificar_msj(id_message, message) {
 function scrollDown() {
      const contenedor_msjs = document.getElementById("msj_canal");
      contenedor_msjs.scrollTop = contenedor_msjs.scrollHeight;
- }
- 
+}
