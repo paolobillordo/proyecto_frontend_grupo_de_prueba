@@ -26,7 +26,10 @@ function get_profile() {
             last_name.textContent = data.last_name
             const email = document.getElementById("email1")
             email.textContent = data.email
+            const image = document.getElementById("image_perfil")
+            image.src = data.image
             usuario_data = data
+
 
         })
         .catch((error) => {
@@ -48,9 +51,68 @@ const modifica_name = document.getElementById("lapiz_name")
 const modifica_last = document.getElementById("lapiz_last")
 const modifica_email = document.getElementById("lapiz_email")
 const edit_modal = document.getElementById("edit_modal")
+const edit_modal_img = document.getElementById("edit_modal_img")
+const selected_img_conteiner = document.getElementById("selected_img_conteiner")
+
 
 modifica_imagen.addEventListener("click", () => {
-    // ojo al piojo que nos falta traer la imagen de perfil.
+    edit_modal_img.style.display = "block"
+    const iconList = document.getElementById("edit_img_container");
+    iconList.innerHTML= ""
+    const titulo = document.createElement("h2")
+    titulo.textContent = "Modificar Imagen:"
+    iconList.appendChild(titulo)
+    
+    const btn_volv = document.createElement("button")
+    btn_volv.textContent = "Volver"
+    btn_volv.addEventListener( "click", () => {
+        edit_modal_img.style.display = "none"
+    })
+    iconList.appendChild(btn_volv)
+    
+    const iconDirectory = "../assets/avatares/";
+    const iconFiles = ["1.svg", "2.svg", "3.svg", "4.svg", "5.svg", "6.svg", "7.svg", "8.svg", "9.svg", "10.svg", "11.svg", "12.svg", "13.svg", "14.svg", "15.svg", "16.svg", "17.svg", "18.svg", "19.svg", "20.svg", "21.svg", "22.svg", "23.svg", "24.svg", "25.svg", "26.svg", "27.svg", "28.svg", "29.svg", "30.svg", "31.svg", "32.svg", "33.svg", "34.svg", "35.svg", "36.svg", "37.svg", "38.svg", "39.svg", "40.svg", "41.svg", "42.svg", "43.svg", "44.svg", "45.svg", "46.svg", "47.svg", "48.svg", "49.svg", "50.svg", "51.svg", "52.svg", "53.svg", "54.svg", "55.svg", "56.svg", "57.svg", "58.svg", "59.svg", "60.svg", "61.svg", "62.svg", "63.svg", "64.svg", "65.svg", "66.svg", "67.svg", "68.svg", "69.svg", "70.svg", "71.svg", "72.svg", "73.svg", "74.svg", "75.svg", "76.svg", "77.svg", "78.svg", "79.svg", "80.svg", "81.svg", "82.svg", "83.svg", "84.svg", "85.svg", "86.svg", "87.svg", "88.svg", "89.svg", "90.svg", "91.svg", "92.svg"
+    ];
+    iconFiles.forEach((iconFile) => {
+        const img = document.createElement("img");
+        img.src = iconDirectory + iconFile;
+        img.alt = iconFile;
+        img.style.height = "80px"
+        img.addEventListener("click", () => {
+            const selectedIcon = document.getElementById("selected_img");
+            selected_img_conteiner.style.display = "block"
+            selectedIcon.innerHTML = "";
+
+            const titulo = document.createElement("h2")
+            titulo.textContent = "¿Modificar Imagen?"
+            selectedIcon.appendChild(titulo)
+            
+            const imgClone = img.cloneNode(true);
+            imgClone.id = "sel_icon";
+            selectedIcon.appendChild(imgClone);
+
+            const btn_ok = document.createElement("button")
+            btn_ok.textContent = "Ok"
+            const btn_cancel = document.createElement("button")
+            btn_cancel.textContent = "Cancelar"
+            selectedIcon.appendChild(btn_ok)
+            selectedIcon.appendChild(btn_cancel)
+
+            btn_cancel.addEventListener("click", () => {
+                selected_img_conteiner.style.display = "none";
+                selectedIcon.innerHTML = ""
+            })
+            btn_ok.addEventListener("click", (e) => {
+                e.preventDefault()
+                ruta = imgClone.src
+                update_user("image", ruta)
+                selected_img_conteiner.style.display = "none"
+                edit_modal_img.style.display = "none"                
+            })
+        });
+        iconList.appendChild(img);
+    });
+    
 })
 
 modifica_nick.addEventListener("click", () => {
@@ -74,8 +136,7 @@ modifica_nick.addEventListener("click", () => {
     })
     btn_ok.addEventListener("click", (e) => {
         e.preventDefault()
-        update_user("nick_name", input_nick.value)
-        
+        update_user("nick_name", input_nick.value)        
         
     })
     
@@ -200,7 +261,6 @@ function update_user(clave, valor) {
                 btn_ok.addEventListener("click", () => {
                     contenedor.textContent = ""
                     edit_modal.style.display = "none"
-
                 })
             }
         })
