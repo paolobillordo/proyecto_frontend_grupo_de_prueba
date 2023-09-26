@@ -41,6 +41,9 @@ const modal_register = document.getElementById("modal_register");
 const modal_container = document.getElementById("modal_container");
 const create_user = document.getElementById("create_user");
 const cancel_create_user = document.getElementById("cancel_create_user")
+const boton_error = document.getElementById("boton_error")
+const ventana_error = document.getElementById("error_modal");
+
 
 registerForm.addEventListener("click", () => {
      modal_register.style.display = "block";
@@ -59,7 +62,7 @@ cancel_create_user.addEventListener("click", () => {
 
 // registra nuevo usuario
 create_user.addEventListener("click", (e) => {
-     //e.preventDefault();
+     e.preventDefault();
      create();
 });
 function create() {
@@ -70,7 +73,7 @@ function create() {
           last_name: document.getElementById("apellido").value,
           password: document.getElementById("password_r").value,
           birth_date: document.getElementById("date").value,
-          image : "../assets/avatares/1.svg", 
+          image: "../assets/avatares/1.svg",
      };
      fetch("http://127.0.0.1:5000/users/", {
           method: "POST",
@@ -99,12 +102,19 @@ function create() {
                          window.location.href = "login.html";
                     });
                     reg_ok_container.appendChild(btn_ok);
-               } else {
-                    // return response.json().then((data) => {
-                    //      document.getElementById("message").innerHTML =
-                    //           data.message;
-                    //      window.location.href = "login.html";
-                    //});
+               }
+               if (response.status === 400) {
+
+
+
+                    return response.json().then((data) => {
+                         
+                         const mensaje_error = document.getElementById("mensaje_error");
+                         console.log(data);
+                         mensaje_error.textContent = data.error.description;
+                         ventana_error.style.display = "block";
+
+                    });
                }
           })
           .catch((error) => {
@@ -113,6 +123,11 @@ function create() {
                //window.location.href = "login.html";
           });
 }
+
+boton_error.addEventListener("click", () => {
+     ventana_error.style.display = "none";
+});
+
 
 window.addEventListener("load", function () {
      if (document.title === "Login") {
@@ -133,5 +148,5 @@ function get_session() {
                          window.location.href = "home.html";
                     });
                }
-          })          
+          })
 }
