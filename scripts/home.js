@@ -479,6 +479,10 @@ const modalChannel = document.getElementById("modal_channel");
 const cancelCanal = document.getElementById("cancel_channel");
 const crearCanal = document.getElementById("create_channel");
 
+// constante para usar el modal  error de creación
+const boton_error = document.getElementById("boton_error")
+const ventana_error = document.getElementById("error_modal");
+
 btncrearCanal.addEventListener("click", () => {
      modalChannel.style.display = "block";
 });
@@ -512,15 +516,17 @@ function create_channel() {
                     return response.json().then((data) => {
                          console.log("Se cargaran los canales.");
                          get_channels(server_name);
-                         //window.location.href = "home.html";
+                        
                     });
-               } else {
+               } 
+               if (response.status === 400) {
                     return response.json().then((data) => {
-                         document.getElementById("message").innerHTML =
-                              data.message;
-                         window.location.href = "home.html";
+                         const mensaje_error = document.getElementById("mensaje_error");
+                         mensaje_error.textContent = data.error.description;
+                         ventana_error.style.display = "block";
                     });
                }
+             
           })
           .catch((error) => {
                document.getElementById("message").innerHTML =
@@ -528,7 +534,10 @@ function create_channel() {
                window.location.href = "home.html";
           });
 }
-
+// funcion que cierra modal mensaje de error de creacion
+boton_error.addEventListener("click", () => {
+     ventana_error.style.display = "none";
+})
 const buscarServer = document.getElementById("buscar_server");
 const bsrSerModal = document.getElementById("modal_buscar_server");
 const cancelBuscar = document.getElementById("cancel_server");

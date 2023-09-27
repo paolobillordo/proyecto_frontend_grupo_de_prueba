@@ -131,7 +131,7 @@ modifica_nick.addEventListener("click", () => {
     titulo.textContent = "Modificar NickName:"
     const input_nick = document.createElement("input")
     input_nick.classList.add("input_edit_perfil")
-    input_nick.placeholder = usuario_data.nick_name
+    input_nick.value = usuario_data.nick_name
     const divBtns = document.createElement("div")
     divBtns.classList.add("btns_container_edit")
     const btn_ok = document.createElement("button")
@@ -163,7 +163,7 @@ modifica_name.addEventListener("click", () => {
     const titulo = document.createElement("h2")
     titulo.textContent = "Modificar Nombre:"
     const input_name = document.createElement("input")
-    input_name.placeholder = usuario_data.first_name
+    input_name.value = usuario_data.first_name
     input_name.classList.add("input_edit_perfil")
     const btn_ok = document.createElement("button")
     const divBtns = document.createElement("div")
@@ -195,7 +195,7 @@ modifica_last.addEventListener("click", () => {
     const titulo = document.createElement("h2")
     titulo.textContent = "Modificar Apellido:"
     const input_Apellido = document.createElement("input")
-    input_Apellido.placeholder = usuario_data.last_name
+    input_Apellido.value = usuario_data.last_name
     input_Apellido.classList.add("input_edit_perfil")
     const divBtns = document.createElement("div")
     divBtns.classList.add("btns_container_edit")
@@ -226,7 +226,7 @@ modifica_email.addEventListener("click", () => {
     const titulo = document.createElement("h2")
     titulo.textContent = "Modificar Email:"
     const input_email = document.createElement("input")
-    input_email.placeholder = usuario_data.email
+    input_email.value = usuario_data.email
     input_email.classList.add("input_edit_perfil")
     const divBtns = document.createElement("div")
     divBtns.classList.add("btns_container_edit")

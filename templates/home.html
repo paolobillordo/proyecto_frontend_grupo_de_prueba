@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/home.css">
     <link rel="stylesheet" href="../styles/profile.css">
+    
+
     <title>Home</title>
 </head>
+
 <body>
     <!-- <nav id="nav_bar">
         <div id="nav_container">
@@ -17,7 +21,7 @@
         <div class="grid-item1">
             <div id="servers_container">
                 <div id="servers">
-                   
+
                 </div>
             </div>
             <div id="buscar_crear">
@@ -44,7 +48,7 @@
         <div class="grid-item2" id="grid-item2">
             <h2 id="name_server_channel"></h2>
             <div id="channels">
-                
+
             </div>
             <div id="crear_canal_container">
                 <div id="crear_canal">
@@ -56,30 +60,30 @@
 
         <div class="grid-item3" id="grid-item3">
             <div class="msj_canal" id="msj_canal">
-                
+
             </div>
             <div class="input" id="input_grid3">
                 <input type="text" class="input_msj" id="input_msj">
                 <button id="enviar_msj" type="button">Enviar</button>
             </div>
-        </div>        
+        </div>
     </div>
 
     <div id="modal_server">
-        <div id="modal_container">            
-                <!-- <h1>Crear Servidor</h1> -->
-                <!-- <label>Nombre del Servidor</label> -->
-                <input type="text" id ="name_server" required placeholder="Pon aquí el nombre"><br>
-                <!-- <label>Descripción</label> -->
-                <textarea id="desc_server" placeholder="Descripción del servidor"></textarea><br>
-                <h2>Icono Seleccionado</h2>
-                <div id="selected-icon"></div>
-                <h2>Selecciona un Icono</h2>
-                <div id="icon-list"></div>
-                <div id="btn_crea_cncl">
-                    <button type="button" id="create_server">Crear</button>
-                    <button type="button" id="cancel_crear_server">Cancelar</button>
-                </div>               
+        <div id="modal_container">
+            <!-- <h1>Crear Servidor</h1> -->
+            <!-- <label>Nombre del Servidor</label> -->
+            <input type="text" id="name_server" required placeholder="Pon aquí el nombre"><br>
+            <!-- <label>Descripción</label> -->
+            <textarea id="desc_server" placeholder="Descripción del servidor"></textarea><br>
+            <h2>Icono Seleccionado</h2>
+            <div id="selected-icon"></div>
+            <h2>Selecciona un Icono</h2>
+            <div id="icon-list"></div>
+            <div id="btn_crea_cncl">
+                <button type="button" id="create_server">Crear</button>
+                <button type="button" id="cancel_crear_server">Cancelar</button>
+            </div>
         </div>
     </div>
 
@@ -95,37 +99,37 @@
     </div>
 
     <div id="modal_channel">
-        <div id="modal_container_channel">            
-                <h1>Crear Canal</h1>                
-                <input type="text" id ="name_channel" required placeholder="Nombre del canal"><br>                
-                <textarea id="desc_channel" cols="30" rows="10" placeholder="Descripción"></textarea><br> 
-                <div id="container_btn_crear_canal">
-                    <button type="button" id="create_channel">Crear</button>
-                    <button type="button" id="cancel_channel">Cancelar</button>
-                </div>
+        <div id="modal_container_channel">
+            <h1>Crear Canal</h1>
+            <input type="text" id="name_channel" required placeholder="Nombre del canal"><br>
+            <textarea id="desc_channel" cols="30" rows="10" placeholder="Descripción"></textarea><br>
+            <div id="container_btn_crear_canal">
+                <button type="button" id="create_channel">Crear</button>
+                <button type="button" id="cancel_channel">Cancelar</button>
+            </div>
         </div>
     </div>
 
 
     <div id="modal_buscar_server">
-        <div id="modal_container_buscar">            
-                <!-- <h1>Buscar servidor</h1> -->
-                
-                <input type="text" id="filter" placeholder="Filtrar por nombre"><br>
+        <div id="modal_container_buscar">
+            <!-- <h1>Buscar servidor</h1> -->
 
-                <h2>Selecciona un Servidor</h2>
-                <div id="server-list">
+            <input type="text" id="filter" placeholder="Filtrar por nombre"><br>
 
-                </div>
-                <h2>Server Seleccionado</h2>
-                <div id="selected-server">
-                </div>
-                <div id="container_unir_cancel">
-                    <button type="button" id="unirse_server">Unirse</button>
-                    <button type="button" id="cancel_server">Cancelar</button>
-                </div>
+            <h2>Selecciona un Servidor</h2>
+            <div id="server-list">
 
-            
+            </div>
+            <h2>Server Seleccionado</h2>
+            <div id="selected-server">
+            </div>
+            <div id="container_unir_cancel">
+                <button type="button" id="unirse_server">Unirse</button>
+                <button type="button" id="cancel_server">Cancelar</button>
+            </div>
+
+
         </div>
     </div>
 
@@ -134,26 +138,26 @@
         <div id="profile_modal">
             <div id="profile_title">
                 <h1 id="my_profile">"Mi Perfil"</h1>
-            </div>    
+            </div>
             <div>
                 <img id="image_perfil" src="" alt="imagenUser">
                 <img id="lapiz_ico" class="img_lapiz" src="../assets/lapiz.png" alt="img_lapiz" srcset="">
-            </div>    
+            </div>
             <div class="divClassEdit">
                 <h2 id="nick_name">Nick Name:</h2>
                 <h2 id="nick"></h2><br>
                 <img id="lapiz_nick" class="img_lapiz" src="../assets/lapiz.png" alt="img_lapiz" srcset="">
-            </div>    
-            <div class="divClassEdit">            
+            </div>
+            <div class="divClassEdit">
                 <h2 id="first_name">Nombre:</h2>
                 <h2 id="name"></h2><br>
                 <img id="lapiz_name" class="img_lapiz" src="../assets/lapiz.png" alt="img_lapiz" srcset="">
-            </div>    
+            </div>
             <div class="divClassEdit">
                 <h2 id="last_name">Apellido:</h2>
                 <h2 id="last"></h2><br>
                 <img id="lapiz_last" class="img_lapiz" src="../assets/lapiz.png" alt="img_lapiz" srcset="">
-            </div>    
+            </div>
             <div class="divClassEdit">
                 <h2 id="email">Email:</h2>
                 <h2 id="email1"></h2><br>
@@ -166,25 +170,34 @@
 
     <div id="edit_modal">
         <div id="edit_container">
-            
+
         </div>
     </div>
 
     <div id="edit_modal_img">
-        
+
         <div id="edit_img_container">
         </div>
 
         <div id="selected_img_conteiner">
             <div id="selected_img">
             </div>
-        </div>  
+        </div>
+    </div>
+    <!-- Modal informa que no pudo realizar un create.  -->
+    <div id="error_modal">
+        <div id="error_container">
+            <h2 id="mensaje_error"></h2>
+            <button id="boton_error">OK</button>
+        </div>
     </div>
 
+
+
     <!-- Modal para llevar a cabo la eliminacion de un msj.  -->
-    <div id="msj_modal"> 
+    <div id="msj_modal">
         <div id="delet_container">
-            
+
         </div>
     </div>
     <!-- para mostrar el nombre del servidor -->
@@ -192,6 +205,7 @@
 
     <script src="../scripts/home.js"></script>
     <script src="../scripts/profile.js"></script>
-        
+
 </body>
+
 </html>
