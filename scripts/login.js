@@ -104,16 +104,11 @@ function create() {
                     reg_ok_container.appendChild(btn_ok);
                }
                if (response.status === 400) {
-
-
-
                     return response.json().then((data) => {
-                         
                          const mensaje_error = document.getElementById("mensaje_error");
                          console.log(data);
                          mensaje_error.textContent = data.error.description;
                          ventana_error.style.display = "block";
-
                     });
                }
           })
