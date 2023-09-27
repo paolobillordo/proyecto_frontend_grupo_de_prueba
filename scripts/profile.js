@@ -266,11 +266,13 @@ function update_user(clave, valor) {
     })
         .then((response) => {
             if (response.status === 200) {
+                edit_modal.style.display = "block"
                 const contenedor = document.getElementById("edit_container")
                 contenedor.textContent = ""
                 const cartel = document.createElement("h2")
                 cartel.textContent = "Modificado exitosamente."
                 const btn_ok = document.createElement("button")
+                btn_ok.classList.add("btn_ok_edit")
                 btn_ok.textContent = "Ok"
                 contenedor.appendChild(cartel)
                 contenedor.appendChild(btn_ok)
