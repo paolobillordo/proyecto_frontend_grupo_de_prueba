@@ -85,10 +85,12 @@ function get_servers() {
                     );
 
                     button_channel.addEventListener("click", () => {
-                         const creaCanal = document.getElementById("crear_canal_container")
-                         creaCanal.style.display = "flex"
-                         const grid3 = document.getElementById("grid-item3")
-                         grid3.style.display = "none"                         
+                         const creaCanal = document.getElementById(
+                              "crear_canal_container"
+                         );
+                         creaCanal.style.display = "flex";
+                         const grid3 = document.getElementById("grid-item3");
+                         grid3.style.display = "none";
                          const contenedor_msjs =
                               document.getElementById("msj_canal");
                          contenedor_msjs.innerHTML = "";
@@ -107,6 +109,10 @@ function get_servers() {
                               "rgba(29, 0, 0, 0.9)";
                     });
                });
+               const img_crea_server = document.getElementById("img_crea_un_servidor");
+               if (contenedor.childElementCount != 0) {
+                    img_crea_server.style.display = "none";
+               }
           })
           .catch((error) => {
                document.getElementById("message").innerHTML =
@@ -300,6 +306,9 @@ function get_channels(name_server) {
                const nameServer = document.getElementById(
                     "name_server_channel"
                );
+               const img_crea_channel =
+                    document.getElementById("img_no_hay_canales");
+               img_crea_channel.style.display = "block";
                nameServer.textContent = name_server;
                const claseChannels = "channels";
                contenedor.innerHTML = "";
@@ -313,8 +322,8 @@ function get_channels(name_server) {
                     contenedor.appendChild(divExterior);
                     channel_msj = document.getElementById(channel.name_channel);
                     channel_msj.addEventListener("click", () => {
-                         const grid3 = document.getElementById("grid-item3")
-                         grid3.style.display = "flex"
+                         const grid3 = document.getElementById("grid-item3");
+                         grid3.style.display = "flex";
                          get_msjs_10s(channel.id_channel);
                          channel_id = channel.id_channel;
 
@@ -328,7 +337,10 @@ function get_channels(name_server) {
 
                          divExterior.style.color = "rgb(107, 2, 2)"; // Establecer el estilo detexto del canal seleccionado
                     });
-               });
+               });               
+               if (contenedor.childElementCount != 0) {
+                    img_crea_channel.style.display = "none";
+               }
           })
           .catch((error) => {
                document.getElementById("message").innerHTML =
@@ -359,6 +371,8 @@ function get_msjs(id_channel) {
                const contenedor = document.getElementById("msj_canal");
                const claseMSJ = "messages";
                contenedor.innerHTML = "";
+               const img_crea_msj = document.getElementById("primer_msj");
+               img_crea_msj.style.display = "block"
                data.forEach((message) => {
                     const divExterior = document.createElement("div");
                     divExterior.classList.add(claseMSJ);
@@ -411,7 +425,10 @@ function get_msjs(id_channel) {
                     contenedor.appendChild(divExterior);
                });
                // Llama a la función para desplazar la vista hacia abajo
-               scrollDown();
+               scrollDown();               
+               if (contenedor.childElementCount != 0) {
+                    img_crea_msj.style.display = "none";
+               }
           })
           .catch((error) => {
                document.getElementById("message").innerHTML =
@@ -480,7 +497,7 @@ const cancelCanal = document.getElementById("cancel_channel");
 const crearCanal = document.getElementById("create_channel");
 
 // constante para usar el modal  error de creación
-const boton_error = document.getElementById("boton_error")
+const boton_error = document.getElementById("boton_error");
 const ventana_error = document.getElementById("error_modal");
 
 btncrearCanal.addEventListener("click", () => {
@@ -516,17 +533,16 @@ function create_channel() {
                     return response.json().then((data) => {
                          console.log("Se cargaran los canales.");
                          get_channels(server_name);
-                        
                     });
-               } 
+               }
                if (response.status === 400) {
                     return response.json().then((data) => {
-                         const mensaje_error = document.getElementById("mensaje_error");
+                         const mensaje_error =
+                              document.getElementById("mensaje_error");
                          mensaje_error.textContent = data.error.description;
                          ventana_error.style.display = "block";
                     });
                }
-             
           })
           .catch((error) => {
                document.getElementById("message").innerHTML =
@@ -537,7 +553,7 @@ function create_channel() {
 // funcion que cierra modal mensaje de error de creacion
 boton_error.addEventListener("click", () => {
      ventana_error.style.display = "none";
-})
+});
 const buscarServer = document.getElementById("buscar_server");
 const bsrSerModal = document.getElementById("modal_buscar_server");
 const cancelBuscar = document.getElementById("cancel_server");
