@@ -23,10 +23,11 @@ function login() {
                     return response.json().then((data) => {
                          window.location.href = "home.html";
                     });
-               } else {
+               } if (response.status === 401) {
                     return response.json().then((data) => {
-                         document.getElementById("message").innerHTML =
-                              data.message;
+                         const mensaje_error = document.getElementById("mensaje_error");
+                         mensaje_error.textContent = data.error.description;
+                         ventana_error.style.display = "block";
                     });
                }
           })
@@ -106,7 +107,6 @@ function create() {
                if (response.status === 400) {
                     return response.json().then((data) => {
                          const mensaje_error = document.getElementById("mensaje_error");
-                         console.log(data);
                          mensaje_error.textContent = data.error.description;
                          ventana_error.style.display = "block";
                     });
