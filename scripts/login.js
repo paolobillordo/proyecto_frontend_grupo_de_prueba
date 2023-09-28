@@ -96,6 +96,7 @@ function create() {
                     reg_ok_container.appendChild(titulo);
                     const btn_ok = document.createElement("button");
                     btn_ok.textContent = "OK";
+                    btn_ok.classList.add("btn_ok_edit");
                     btn_ok.addEventListener("click", (e) => {
                          e.preventDefault();
                          reg_ok_modal.style.display = "none";

@@ -100,6 +100,19 @@ body {
      border-radius: 50px;
      border: 10px solid rgb(253, 0, 0);
 }
+#img_crea_un_servidor {
+     height: 300px;
+     margin-top: auto;
+}
+#img_no_hay_canales {
+     height: 300px;
+     margin-bottom: 500px;
+}
+#primer_msj {
+     height: 400px;
+     margin-bottom: 20px;
+     margin-left: 250px;
+}
 
 .grid-item2 {
      display: flex;
@@ -113,6 +126,7 @@ body {
 }
 #name_server_channel {
      text-align: center;
+     color: #22336c;
 }
 .channels {
      text-align: center;
