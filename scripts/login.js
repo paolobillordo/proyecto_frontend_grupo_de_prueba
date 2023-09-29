@@ -50,12 +50,6 @@ registerForm.addEventListener("click", () => {
      modal_register.style.display = "block";
 });
 
-window.addEventListener("click", (e) => {
-     if (e.target === modal_register) {
-          modal_register.style.display = "none";
-     }
-});
-
 cancel_create_user.addEventListener("click", () => {
      modal_register.style.display = "none"
 }

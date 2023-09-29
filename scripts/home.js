@@ -109,7 +109,9 @@ function get_servers() {
                               "rgba(29, 0, 0, 0.9)";
                     });
                });
-               const img_crea_server = document.getElementById("img_crea_un_servidor");
+               const img_crea_server = document.getElementById(
+                    "img_crea_un_servidor"
+               );
                if (contenedor.childElementCount != 0) {
                     img_crea_server.style.display = "none";
                }
@@ -179,6 +181,20 @@ const iconFiles = [
      "9.ico",
      "10.ico",
      "11.ico",
+     "12.ico",
+     "13.ico",
+     "14.ico",
+     "15.ico",
+     "16.ico",
+     "17.ico",
+     "18.ico",
+     "19.ico",
+     "20.ico",
+     "21.ico",
+     "22.ico",
+     "23.ico",
+     "24.ico",
+     "25.ico"
 ];
 iconFiles.forEach((iconFile) => {
      const img = document.createElement("img");
@@ -201,7 +217,7 @@ create_server.addEventListener("click", (e) => {
 });
 
 const mensajito = document.getElementById("mensajito");
-var nombre_servidor
+var nombre_servidor;
 function create_ser() {
      const miImagen = document.getElementById("sel_icon");
      const data = {
@@ -209,7 +225,7 @@ function create_ser() {
           description: document.getElementById("desc_server").value,
           icono: miImagen.src.replace("http://127.0.0.1:5500", ".."),
      };
-     nombre_servidor= data.name_server
+     nombre_servidor = data.name_server;
      fetch("http://127.0.0.1:5000/servers/", {
           method: "POST",
           headers: {
@@ -338,7 +354,7 @@ function get_channels(name_server) {
 
                          divExterior.style.color = "rgb(107, 2, 2)"; // Establecer el estilo detexto del canal seleccionado
                     });
-               });               
+               });
                if (contenedor.childElementCount != 0) {
                     img_crea_channel.style.display = "none";
                }
@@ -373,7 +389,7 @@ function get_msjs(id_channel) {
                const claseMSJ = "messages";
                contenedor.innerHTML = "";
                const img_crea_msj = document.getElementById("primer_msj");
-               img_crea_msj.style.display = "block"
+               img_crea_msj.style.display = "block";
                data.forEach((message) => {
                     const divExterior = document.createElement("div");
                     divExterior.classList.add(claseMSJ);
@@ -426,7 +442,7 @@ function get_msjs(id_channel) {
                     contenedor.appendChild(divExterior);
                });
                // Llama a la función para desplazar la vista hacia abajo
-               scrollDown();               
+               scrollDown();
                if (contenedor.childElementCount != 0) {
                     img_crea_msj.style.display = "none";
                }
@@ -465,12 +481,6 @@ function create_msj(mensaje) {
                     return response.json().then((data) => {
                          inputMsj.value = "";
                     });
-               } else {
-                    return response.json().then((data) => {
-                         document.getElementById("message").innerHTML =
-                              data.message;
-                         // window.location.href = "home.html";
-                    });
                }
           })
           .catch((error) => {
@@ -506,10 +516,14 @@ btncrearCanal.addEventListener("click", () => {
 });
 cancelCanal.addEventListener("click", () => {
      modalChannel.style.display = "none";
+     document.getElementById("name_channel").value = "";
+     document.getElementById("desc_channel").value = "";
 });
 
 crearCanal.addEventListener("click", () => {
      create_channel();
+     document.getElementById("name_channel").value = "";
+     document.getElementById("desc_channel").value = "";
      modalChannel.style.display = "none";
 });
 
@@ -826,35 +840,36 @@ function loadUserList() {
      const users = [];
      const url = "http://127.0.0.1:5000/users/";
      fetch(url, {
-       method: "GET",
-       credentials: "include",
+          method: "GET",
+          credentials: "include",
      })
-       .then((response) => response.json())
-       .then((data) => {
-         data.forEach((user) => {
-           console.log(user.email);
-           users.push(user.email);
-         });
-   
-         // Llamar a la función para crear la lista después de cargar los datos.
-         createCheckboxList(users);
-       })
-       .catch((error) => {
-         document.getElementById("message").innerHTML = "Ocurrió un error, profile";
-       });
-}
-   
-function createCheckboxList(users) {
-const userList = document.getElementById("userList");
+          .then((response) => response.json())
+          .then((data) => {
+               data.forEach((user) => {
+                    console.log(user.email);
+                    users.push(user.email);
+               });
 
-users.forEach((user) => {
-     const listItem = document.createElement("li");
-     listItem.textContent = user;
-     const checkbox = document.createElement("input");
-     checkbox.type = "checkbox";
-     listItem.appendChild(checkbox);
-     userList.appendChild(listItem);
-});
+               // Llamar a la función para crear la lista después de cargar los datos.
+               createCheckboxList(users);
+          })
+          .catch((error) => {
+               document.getElementById("message").innerHTML =
+                    "Ocurrió un error, profile";
+          });
+}
+
+function createCheckboxList(users) {
+     const userList = document.getElementById("userList");
+
+     users.forEach((user) => {
+          const listItem = document.createElement("li");
+          listItem.textContent = user;
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          listItem.appendChild(checkbox);
+          userList.appendChild(listItem);
+     });
 }
 
 const selectAllButton = document.getElementById("selectAllButton");
@@ -874,8 +889,7 @@ function selectAllCheckboxes(selected) {
      checkboxes.forEach((checkbox) => {
           checkbox.checked = selected;
      });
-} 
-
+}
 
 // Función para obtener los usuarios seleccionados
 function getSelectedUsers() {
@@ -894,12 +908,17 @@ function getSelectedUsers() {
 function generateAndSendInvitation(selectedUsers) {
      // Verifica si al menos un usuario ha sido seleccionado
      if (selectedUsers.length === 0) {
-          alert("Debes seleccionar al menos un usuario para enviar la invitación.");
+          alert(
+               "Debes seleccionar al menos un usuario para enviar la invitación."
+          );
           return;
      }
 
      // Puedes personalizar el mensaje de invitación aquí
-     const invitationMessage = "¡Te invitamos a unirte a nuestro nuevo servidor llamado:  "+ nombre_servidor+ " !";
+     const invitationMessage =
+          "¡Te invitamos a unirte a nuestro nuevo servidor llamado:  " +
+          nombre_servidor +
+          " !";
 
      // Aquí debes enviar la invitación a los usuarios seleccionados
      // En este ejemplo, estamos simulando una solicitud POST a una URL ficticia
@@ -914,25 +933,28 @@ function generateAndSendInvitation(selectedUsers) {
                "Content-Type": "application/json",
           },
           body: JSON.stringify(invitationData),
-          credentials: 'include'
+          credentials: "include",
      })
           .then((response) => {
                if (response.status === 200) {
                     return response.json();
                } else {
-                    throw new Error("Hubo un problema al enviar la invitación.");
+                    throw new Error(
+                         "Hubo un problema al enviar la invitación."
+                    );
                }
           })
           .then((data) => {
                // Manejar la respuesta exitosa del servidor
-               alert("Invitación enviada con éxito a los usuarios seleccionados.");
+               alert(
+                    "Invitación enviada con éxito a los usuarios seleccionados."
+               );
           })
           .catch((error) => {
-               // Manejar errores en la solicitud 
+               // Manejar errores en la solicitud
                console.error("Error al enviar la invitación:", error);
           });
 }
-
 
 // Carga la lista de usuarios cuando se abre la ventana modal
 function showModalForUserSelection() {

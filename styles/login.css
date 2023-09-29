@@ -134,15 +134,20 @@ body {
 }
 
 #reg_ok_container {
+     display: flex;
+     flex-direction: column;
      position: absolute;
      top: 50%;
      left: 50%;
      transform: translate(-50%, -50%);
-     background-color: rgba(0, 0, 0, 0.5);
+     background-color: #333333;
      padding: 20px;
-     border: 1px solid #ccc;
-     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-     max-width: 80%;
+     width: 400px;
+     height: 150px;
+     justify-content: center;
+     align-items: center;
+     border-radius: 25px;
+     box-shadow: 10px 10px 10px rgba(131, 1, 1, 0.5);
 }
 
 /* Javier rompe todo el css */
@@ -171,6 +176,9 @@ body {
      align-items: center;
      border-radius: 25px;
      box-shadow: 10px 10px 10px rgba(131, 1, 1, 0.5);
+}
+#mensaje_error {
+     text-align: center;
 }
 #boton_error,
 .btn_ok_edit {

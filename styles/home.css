@@ -15,6 +15,10 @@ body {
      color: aliceblue;
      flex-direction: column;
 }
+#message {
+     display: none;
+}
+
 #nav_bar {
      display: flex;
      justify-content: center;
@@ -71,7 +75,6 @@ body {
      cursor: pointer;
      background-color: rgba(120, 3, 3, 0.409);
 }
-
 
 #container_busc_crear {
      display: flex;
@@ -248,7 +251,7 @@ body {
      width: 600px;
      height: 35px;
      border-radius: 25px;
-     margin-top: 10px;     
+     margin-top: 10px;
      font-size: 1.5rem;
 }
 #name_server {
@@ -381,7 +384,8 @@ body {
      border-radius: 25px;
      box-shadow: 10px 10px 10px rgba(131, 1, 1, 0.5);
 }
-#name_channel, #desc_channel {
+#name_channel,
+#desc_channel {
      text-align: center;
      width: 400px;
      height: 35px;
@@ -391,7 +395,7 @@ body {
      font-size: 1.5rem;
 }
 #desc_channel {
-     width: 500px;     
+     width: 500px;
 }
 #create_channel {
      height: 35px;
@@ -465,7 +469,7 @@ body {
      width: 500px;
      height: 35px;
      border-radius: 25px;
-     margin-top: 10px;     
+     margin-top: 10px;
      font-size: 1.5rem;
 }
 #container_unir_cancel {
@@ -626,7 +630,6 @@ body {
      display: none;
 }
 
-
 /* Javier rompe todo el css */
 #error_modal {
      display: none;
@@ -637,8 +640,8 @@ body {
      height: 100%;
      background-color: rgba(0, 0, 0, 0.5);
      z-index: 1;
- }
- #error_container {
+}
+#error_container {
      display: flex;
      flex-direction: column;
      position: absolute;
@@ -653,9 +656,9 @@ body {
      align-items: center;
      border-radius: 25px;
      box-shadow: 10px 10px 10px rgba(131, 1, 1, 0.5);
- }
- 
- /* Estilos para la ventana modal */
+}
+
+/* Estilos para la ventana modal */
 .modals {
      display: none;
      position: fixed;
@@ -664,22 +667,25 @@ body {
      width: 100%;
      height: 100%;
      background-color: rgba(0, 0, 0, 0.555);
-   }
-   
+}
+
 .modal-content {
-     
-     margin: 0px auto;
-     padding: 0px;
-     border: 1px solid #e90202;
-     width: 100%;
-     text-align: center;
-     position: relative;
+     display: flex;
+     flex-direction: column;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
      background-color: #333333;
+     padding: 20px;
+     width: 400px;
+     height: 500px;
+     justify-content: center;
+     align-items: center;
      border-radius: 25px;
      box-shadow: 10px 10px 10px rgba(131, 1, 1, 0.5);
-     
-   }
-   
+}
+
 .close {
      position: absolute;
      top: 0;
@@ -687,103 +693,58 @@ body {
      padding: 10px;
      cursor: pointer;
 }
-.close:hover{
-     
-     color:  hsl(0, 100%, 50%); 
-     
-     
+.close:hover {
+     color: hsl(0, 100%, 50%);
 }
 
-   /* Estilos para la lista de usuarios */
+/* Estilos para la lista de usuarios */
 #userList {
-     font-family: georgia;
-     color:#f02121;
+     font-family: "Courier New", Courier, monospace;
+     color: #000000;
      padding: 0;
-     max-height: 300px; /* Establece la altura máxima que desees */
+     height: 300px; /* Establece la altura máxima que desees */
      overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando sea necesario */
-     width : 97%;
-     background-color: #49484896;
+     width: 97%;
+     background-color: darkkhaki;
      justify-content: center;
      border-radius: 25px;
-     box-shadow: 10px 10px 10px rgba(131, 1, 1, 0.5);
+     font-size: 1.25rem;
+     text-align: center;
      
-   }
-   
-   #userList li {
-     margin: 5px;
-   }
-   
-   /* Estilos para el botón Enviar Invitación */
-   #sendInvitation {
-     background-color: #5f0505;
-     
-     vertical-align: middle;
-     
-     cursor: pointer;
-     margin-right: 10px;
-     height: 35px;
-     width: 250px;
-     border-radius: 25px;
-     font-size: 1rem;
-     font-family: cursive;
-     color: aliceblue;
-     border-color: rgba(44, 1, 1, 0.938);
-     background-color: #152f1a;
-     margin-top: 10px;
-     margin-bottom: 10px;
-     text-shadow: 7px 4px 7px rgb(228, 26, 26);
-     border-bottom-left-radius: 25px;
-     border-bottom-right-radius: 25px;
-   }
-   
-   #sendInvitation:hover {
-     background-color: rgb(49, 2, 2);
-     text-shadow: 7px 4px 7px #152f1a;
-   }
+}
 
+#userList li {
+     margin-top: 10px;
+}
+
+/* Estilos para el botón Enviar Invitación */
+#sendInvitation {
+     height: 35px;
+     width: 150px;
+     border-radius: 25px;
+     font-size: 1.5rem;
+     color: aliceblue;
+     background-color: #22336c;
+     margin: 5px;
+}
 /* Estilos para el botón "inviteUsersButton" */
 #inviteUsersButton {
-     
-     margin-right: 10px;
      height: 35px;
-     width: 250px;
+     width: 150px;
      border-radius: 25px;
-     font-size: 1rem;
-     font-family: cursive;
+     font-size: 1.5rem;
      color: aliceblue;
-     border-color: rgb(49, 2, 2);
-     background-color: #152f1a;
-     margin-top: 10px;
-     margin-bottom: 10px;
-     text-shadow: 7px 4px 7px rgb(228, 26, 26);
-     border-bottom-left-radius: 25px;
-     border-bottom-right-radius: 40px;
-     cursor: pointer;
-}
-#inviteUsersButton:hover {
-     background-color: rgb(49, 2, 2);
-     text-shadow: 7px 4px 7px #152f1a;
-     
+     background-color: #22336c;
 }
 
 /* Estilos para los botones "Seleccionar Todos" y "Deseleccionar Todos" */
 #selectAllButton,
 #deselectAllButton {
      height: 35px;
-     width: 150px; /* Ajusta el ancho según tus preferencias */
+     width: 150px;
      border-radius: 25px;
-     font-size: 0.8rem;
-     font-family: cursive;
+     font-size: 1.5rem;
      color: aliceblue;
-     background-color: #273b1b;
-     margin-top: 10px;
-     margin-bottom: 10px;
-     text-shadow: 10px 7px 6px rgb(80, 16, 16);
-     cursor: pointer;
-}
-
-#selectAllButton:hover,
-#deselectAllButton:hover {
-     background-color: rgba(49, 2, 2, 0.527);
-     text-shadow: 7px 4px 7px #152f1a;
+     background-color: #22336c;
+     margin: 5px;
 }
