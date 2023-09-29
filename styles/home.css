@@ -640,3 +640,136 @@ body {
      border-radius: 25px;
      box-shadow: 10px 10px 10px rgba(131, 1, 1, 0.5);
  }
+ 
+ /* Estilos para la ventana modal */
+.modals {
+     display: none;
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background-color: rgba(0, 0, 0, 0.555);
+   }
+   
+.modal-content {
+     
+     margin: 0px auto;
+     padding: 0px;
+     border: 1px solid #e90202;
+     width: 100%;
+     text-align: center;
+     position: relative;
+     background-color: #333333;
+     border-radius: 25px;
+     box-shadow: 10px 10px 10px rgba(131, 1, 1, 0.5);
+     
+   }
+   
+.close {
+     position: absolute;
+     top: 0;
+     right: 0;
+     padding: 10px;
+     cursor: pointer;
+}
+.close:hover{
+     
+     color:  hsl(0, 100%, 50%); 
+     
+     
+}
+
+   /* Estilos para la lista de usuarios */
+#userList {
+     font-family: georgia;
+     color:#f02121;
+     padding: 0;
+     max-height: 300px; /* Establece la altura máxima que desees */
+     overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando sea necesario */
+     width : 97%;
+     background-color: #49484896;
+     justify-content: center;
+     border-radius: 25px;
+     box-shadow: 10px 10px 10px rgba(131, 1, 1, 0.5);
+     
+   }
+   
+   #userList li {
+     margin: 5px;
+   }
+   
+   /* Estilos para el botón Enviar Invitación */
+   #sendInvitation {
+     background-color: #5f0505;
+     
+     vertical-align: middle;
+     
+     cursor: pointer;
+     margin-right: 10px;
+     height: 35px;
+     width: 250px;
+     border-radius: 25px;
+     font-size: 1rem;
+     font-family: cursive;
+     color: aliceblue;
+     border-color: rgba(44, 1, 1, 0.938);
+     background-color: #152f1a;
+     margin-top: 10px;
+     margin-bottom: 10px;
+     text-shadow: 7px 4px 7px rgb(228, 26, 26);
+     border-bottom-left-radius: 25px;
+     border-bottom-right-radius: 25px;
+   }
+   
+   #sendInvitation:hover {
+     background-color: rgb(49, 2, 2);
+     text-shadow: 7px 4px 7px #152f1a;
+   }
+
+/* Estilos para el botón "inviteUsersButton" */
+#inviteUsersButton {
+     
+     margin-right: 10px;
+     height: 35px;
+     width: 250px;
+     border-radius: 25px;
+     font-size: 1rem;
+     font-family: cursive;
+     color: aliceblue;
+     border-color: rgb(49, 2, 2);
+     background-color: #152f1a;
+     margin-top: 10px;
+     margin-bottom: 10px;
+     text-shadow: 7px 4px 7px rgb(228, 26, 26);
+     border-bottom-left-radius: 25px;
+     border-bottom-right-radius: 40px;
+     cursor: pointer;
+}
+#inviteUsersButton:hover {
+     background-color: rgb(49, 2, 2);
+     text-shadow: 7px 4px 7px #152f1a;
+     
+}
+
+/* Estilos para los botones "Seleccionar Todos" y "Deseleccionar Todos" */
+#selectAllButton,
+#deselectAllButton {
+     height: 35px;
+     width: 150px; /* Ajusta el ancho según tus preferencias */
+     border-radius: 25px;
+     font-size: 0.8rem;
+     font-family: cursive;
+     color: aliceblue;
+     background-color: #273b1b;
+     margin-top: 10px;
+     margin-bottom: 10px;
+     text-shadow: 10px 7px 6px rgb(80, 16, 16);
+     cursor: pointer;
+}
+
+#selectAllButton:hover,
+#deselectAllButton:hover {
+     background-color: rgba(49, 2, 2, 0.527);
+     text-shadow: 7px 4px 7px #152f1a;
+}

@@ -33,7 +33,7 @@
                         <img src="../assets/iconos/varita.png" alt="" class="iconos_buscar_crear">
                     </div>
                 </div>
-                <div>Buscar o Crear</div>
+                <div>Buscar o Crear</div>    
             </div>
             <div class="user_log">
                 <div id="user_session">
@@ -92,8 +92,24 @@
             <h2 id="mensajito"></h2>
             <h2 id="modal_message"></h2>
             <div>
-                <button id="btn_ok" class="btn_ok">OK</button>
+                <button id="btn_ok" class="btn_ok">OK</button><button id="inviteUsersButton">¿Invitar usuarios?</button>
                 <button id="btn_no_ok" class="btn_ok">NO</button>
+                
+                <div id="myModal" class="modals">
+                    <div class="modal-content">
+                        <span class="close" id="closeModal">&times;</span>
+                        <h2>Seleccionar usuarios</h2>
+                        
+                        <ul id="userList">
+                            <!-- Aquí se mostrará la lista de usuarios -->
+                            <!-- Puedes llenar esta lista dinámicamente con JavaScript -->
+                        </ul>
+                        <button id="selectAllButton">Seleccionar Todos</button>
+                        <button id="deselectAllButton">Deseleccionar Todos</button>
+                        <button id="sendInvitation">Enviar Invitación</button>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -132,6 +148,7 @@
 
         </div>
     </div>
+           
 
 
     <div id="profile_container">
@@ -206,6 +223,7 @@
     <script src="../scripts/home.js"></script>
     <script src="../scripts/profile.js"></script>
 
+    
 </body>
 
 </html>
