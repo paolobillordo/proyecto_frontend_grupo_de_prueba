@@ -201,7 +201,7 @@ create_server.addEventListener("click", (e) => {
 });
 
 const mensajito = document.getElementById("mensajito");
-
+var nombre_servidor
 function create_ser() {
      const miImagen = document.getElementById("sel_icon");
      const data = {
@@ -209,6 +209,7 @@ function create_ser() {
           description: document.getElementById("desc_server").value,
           icono: miImagen.src.replace("http://127.0.0.1:5500", ".."),
      };
+     nombre_servidor= data.name_server
      fetch("http://127.0.0.1:5000/servers/", {
           method: "POST",
           headers: {
@@ -794,4 +795,147 @@ function modificar_msj(id_message, message) {
 function scrollDown() {
      const contenedor_msjs = document.getElementById("msj_canal");
      contenedor_msjs.scrollTop = contenedor_msjs.scrollHeight;
+}
+
+const inviteUsersButton = document.getElementById("inviteUsersButton");
+const modals = document.getElementById("myModal");
+const closeModalButton = document.getElementById("closeModal");
+const sendInvitationButton = document.getElementById("sendInvitation");
+const userList = document.getElementById("userList");
+
+// Evento para mostrar la ventana modal
+inviteUsersButton.addEventListener("click", () => {
+     showModalForUserSelection();
+});
+
+// Evento para cerrar la ventana modal
+closeModalButton.addEventListener("click", () => {
+     modals.style.display = "none";
+});
+
+// Evento para enviar la invitación
+sendInvitationButton.addEventListener("click", () => {
+     const selectedUsers = getSelectedUsers(); //  para obtener los usuarios seleccionados
+     generateAndSendInvitation(selectedUsers); // generar y enviar la invitación
+     modals.style.display = "none";
+});
+
+// Función para cargar la lista de usuarios (puedes llenarla dinámicamente desde tu fuente de datos)
+function loadUserList() {
+     // Invitar a servidor.
+     const users = [];
+     const url = "http://127.0.0.1:5000/users/";
+     fetch(url, {
+       method: "GET",
+       credentials: "include",
+     })
+       .then((response) => response.json())
+       .then((data) => {
+         data.forEach((user) => {
+           console.log(user.email);
+           users.push(user.email);
+         });
+   
+         // Llamar a la función para crear la lista después de cargar los datos.
+         createCheckboxList(users);
+       })
+       .catch((error) => {
+         document.getElementById("message").innerHTML = "Ocurrió un error, profile";
+       });
+}
+   
+function createCheckboxList(users) {
+const userList = document.getElementById("userList");
+
+users.forEach((user) => {
+     const listItem = document.createElement("li");
+     listItem.textContent = user;
+     const checkbox = document.createElement("input");
+     checkbox.type = "checkbox";
+     listItem.appendChild(checkbox);
+     userList.appendChild(listItem);
+});
+}
+
+const selectAllButton = document.getElementById("selectAllButton");
+const deselectAllButton = document.getElementById("deselectAllButton");
+
+selectAllButton.addEventListener("click", () => {
+     selectAllCheckboxes(true);
+});
+
+deselectAllButton.addEventListener("click", () => {
+     selectAllCheckboxes(false);
+});
+
+// Función para cambiar el estado de todas las casillas de verificación
+function selectAllCheckboxes(selected) {
+     const checkboxes = userList.querySelectorAll("input[type='checkbox']");
+     checkboxes.forEach((checkbox) => {
+          checkbox.checked = selected;
+     });
+} 
+
+
+// Función para obtener los usuarios seleccionados
+function getSelectedUsers() {
+     const selectedUsers = [];
+     const checkboxes = userList.querySelectorAll("input[type='checkbox']");
+     checkboxes.forEach((checkbox, index) => {
+          if (checkbox.checked) {
+               // Agrega el usuario seleccionado a la lista
+               selectedUsers.push(checkbox.parentElement.textContent);
+          }
+     });
+     return selectedUsers;
+}
+
+// Función para generar y enviar la invitación
+function generateAndSendInvitation(selectedUsers) {
+     // Verifica si al menos un usuario ha sido seleccionado
+     if (selectedUsers.length === 0) {
+          alert("Debes seleccionar al menos un usuario para enviar la invitación.");
+          return;
+     }
+
+     // Puedes personalizar el mensaje de invitación aquí
+     const invitationMessage = "¡Te invitamos a unirte a nuestro nuevo servidor llamado:  "+ nombre_servidor+ " !";
+
+     // Aquí debes enviar la invitación a los usuarios seleccionados
+     // En este ejemplo, estamos simulando una solicitud POST a una URL ficticia
+     const invitationData = {
+          users: selectedUsers,
+          message: invitationMessage,
+     };
+     const url = "http://127.0.0.1:5000/enviar_invitacion/";
+     fetch(url, {
+          method: "POST",
+          headers: {
+               "Content-Type": "application/json",
+          },
+          body: JSON.stringify(invitationData),
+          credentials: 'include'
+     })
+          .then((response) => {
+               if (response.status === 200) {
+                    return response.json();
+               } else {
+                    throw new Error("Hubo un problema al enviar la invitación.");
+               }
+          })
+          .then((data) => {
+               // Manejar la respuesta exitosa del servidor
+               alert("Invitación enviada con éxito a los usuarios seleccionados.");
+          })
+          .catch((error) => {
+               // Manejar errores en la solicitud 
+               console.error("Error al enviar la invitación:", error);
+          });
+}
+
+
+// Carga la lista de usuarios cuando se abre la ventana modal
+function showModalForUserSelection() {
+     loadUserList();
+     modals.style.display = "block";
 }
